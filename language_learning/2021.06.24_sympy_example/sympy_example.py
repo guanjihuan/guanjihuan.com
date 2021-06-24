@@ -66,8 +66,8 @@ eigenvalue = matrix.eigenvals()  # 使用.eigenvals()方法
 eigenvector = matrix.eigenvects() # 使用.eigenvects()方法
 print('特征值\n', eigenvalue)
 print('特征向量\n', eigenvector)
-
 print()
+
 P, D = matrix.diagonalize()  # 使用.diagonalize()方法
 print('特征值\n', D)
 print('特征向量\n', P)
