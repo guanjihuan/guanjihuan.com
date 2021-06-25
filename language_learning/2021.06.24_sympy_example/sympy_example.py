@@ -55,14 +55,14 @@ sympy.init_printing(use_unicode=True)
 print('符号矩阵的特征值和特征向量：')
 eigenvalue = matrix.eigenvals()  # 使用.eigenvals()方法
 print('特征值\n', eigenvalue, '\n')
-sympy.pprint(eigenvalue)
-print('\n', sympy.pretty(eigenvalue))
+sympy.pprint(eigenvalue)               # 使用sympy.pprint()输出
+print('\n', sympy.pretty(eigenvalue))  # 使用sympy.pretty()美化后输出
 print()
 
 eigenvector = matrix.eigenvects() # 使用.eigenvects()方法
 print('特征向量\n', eigenvector, '\n')
 sympy.pprint(eigenvector)
-print('\n', sympy.pretty(eigenvector))
+print('\n', sympy.pretty(eigenvector)) 
 print()
 
 P, D = matrix.diagonalize()  # 使用.diagonalize()方法
