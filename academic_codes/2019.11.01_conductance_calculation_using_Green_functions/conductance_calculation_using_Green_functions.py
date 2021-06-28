@@ -45,7 +45,7 @@ def plot_conductance_energy(fermi_energy_array, h00, h01):  # 画电导与费米
 
 
 def transfer_matrix(fermi_energy, h00, h01, dim):   # 转移矩阵T。dim是传递矩阵h00和h01的维度
-    transfer = np.zeros((2*dim, 2*dim))*(0+0j)  # 乘0+0j，把变量转为复数
+    transfer = np.zeros((2*dim, 2*dim), dtype=complex)
     transfer[0:dim, 0:dim] = np.dot(np.linalg.inv(h01), fermi_energy*np.identity(dim)-h00)   # np.dot()等效于np.matmul()
     transfer[0:dim, dim:2*dim] = np.dot(-1*np.linalg.inv(h01), h01.transpose().conj())
     transfer[dim:2*dim, 0:dim] = np.identity(dim)
@@ -57,7 +57,7 @@ def green_function_lead(fermi_energy, h00, h01, dim):  # 电极的表面格林�
     transfer = transfer_matrix(fermi_energy, h00, h01, dim)
     eigenvalue, eigenvector = np.linalg.eig(transfer)
     ind = np.argsort(np.abs(eigenvalue))
-    temp = np.zeros((2*dim, 2*dim))*(1+0j)
+    temp = np.zeros((2*dim, 2*dim), dtype=complex)
     i0 = 0
     for ind0 in ind:
         temp[:, i0] = eigenvector[:, ind0]
