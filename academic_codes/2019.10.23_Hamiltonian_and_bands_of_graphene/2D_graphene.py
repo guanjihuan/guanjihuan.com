@@ -14,7 +14,6 @@ def hamiltonian(k1, k2, M, t1, a=1/sqrt(3)):  # Haldane哈密顿量（a为原子
     # 初始化为零矩阵
     h0 = np.zeros((2, 2), dtype=complex)
     h1 = np.zeros((2, 2), dtype=complex)
-    h2 = np.zeros((2, 2), dtype=complex)
 
     # 质量项(mass term)，用于打开带隙
     h0[0, 0] = M
