@@ -10,7 +10,7 @@ import cmath
 import functools 
 
 
-def hamiltonian(k, N, M, t1):  # Haldane哈密顿量（N是条带的宽度参数）
+def hamiltonian(k, N, M, t1):  # graphene哈密顿量（N是条带的宽度参数）
     # 初始化为零矩阵
     h00 = np.zeros((4*N, 4*N), dtype=complex)
     h01 = np.zeros((4*N, 4*N), dtype=complex)
