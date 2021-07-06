@@ -1,3 +1,5 @@
+# 在E:\zotero\storage里的每个文件夹中一般有3个文件（包括隐藏文件），有个别无法解析或其他原因，会只有1个文件或者2个文件。这个其实没什么影响，但如果有强迫症可以通过以下python代码找出文件个数不等于3的文件夹。
+
 import os
 
 def find_files_and_directory(path):
