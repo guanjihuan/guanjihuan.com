@@ -8,13 +8,12 @@ import cmath
 from math import *
 
 
-def hamiltonian(k):
+def hamiltonian(k):  # SSH模型哈密顿量
     gamma = 0.5
     lambda0 = 1
-    delta = 0
     h = np.zeros((2, 2))*(1+0j)
-    h[0,0] = delta
-    h[1,1] = -delta
+    h[0,0] = 0
+    h[1,1] = 0
     h[0,1] = gamma+lambda0*cmath.exp(-1j*k)
     h[1,0] = gamma+lambda0*cmath.exp(1j*k)
     return h
@@ -27,11 +26,16 @@ def main():
     for k in k_array:
         vector  = get_occupied_bands_vectors(k, hamiltonian)   
         vector_array.append(vector)
+        # vector_array.append(vector*cmath.exp(1j*np.random.uniform(0, pi)))
 
     # 波函数固定一个规范
-    index = np.argmax(np.abs(vector_array[0]))
     for i0 in range(Num_k):
-        vector_array[i0] = find_vector_with_fixed_gauge(vector_array[i0], index)
+        vector_array[i0] = find_vector_with_fixed_gauge_by_making_one_component_real(vector_array[i0])
+
+    # 波函数固定一个规范
+    # import guan
+    # for i0 in range(Num_k):
+    #     vector_array[i0] = guan.find_vector_with_fixed_gauge_by_making_one_component_real(vector_array[i0])
 
     # 计算Wilson loop
     W_k = 1
@@ -51,9 +55,10 @@ def get_occupied_bands_vectors(x, matrix):
     return vector
 
 
-def find_vector_with_fixed_gauge(vector, index):
+def find_vector_with_fixed_gauge_by_making_one_component_real(vector, precision=0.005):
+    index = np.argmax(np.abs(vector))
     sign_pre = np.sign(np.imag(vector[index]))
-    for phase in np.arange(0, 2*pi, 0.01):
+    for phase in np.arange(0, 2*pi, precision):
         sign =  np.sign(np.imag(vector[index]*cmath.exp(1j*phase)))
         if np.abs(np.imag(vector[index]*cmath.exp(1j*phase))) < 1e-9 or sign == -sign_pre:
             break
