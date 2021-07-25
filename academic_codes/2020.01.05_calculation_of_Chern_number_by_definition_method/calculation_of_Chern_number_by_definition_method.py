@@ -4,8 +4,7 @@ The newest version of this code is on the web page: https://www.guanjihuan.com/a
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
-from math import *   # 引入pi, cos等
+from math import * 
 import time
 
 
@@ -14,7 +13,7 @@ def hamiltonian(kx, ky):  # 量子反常霍尔QAH模型（该参数对应的陈�
     t2 = 1.0
     t3 = 0.5
     m = -1.0
-    matrix = np.zeros((2, 2))*(1+0j)
+    matrix = np.zeros((2, 2), dtype=complex)
     matrix[0, 1] = 2*t1*cos(kx)-1j*2*t1*cos(ky)
     matrix[1, 0] = 2*t1*cos(kx)+1j*2*t1*cos(ky)
     matrix[0, 0] = m+2*t3*sin(kx)+2*t3*sin(ky)+2*t2*cos(kx+ky)
