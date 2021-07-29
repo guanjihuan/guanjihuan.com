@@ -8,7 +8,7 @@ from math import *
 import time
 
 
-def hamiltonian(kx, ky):  # 量子反常霍尔QAH模型（该参数对应的陈数为2）
+def hamiltonian(kx, ky):  # one QAH model with Chern number = 2
     t1 = 1.0
     t2 = 1.0
     t3 = 0.5
@@ -23,11 +23,11 @@ def hamiltonian(kx, ky):  # 量子反常霍尔QAH模型（该参数对应的陈�
 
 def main():
     start_time = time.time()
-    n = 200 
-    delta = 2*pi/n 
+    n = 200       # integration
+    delta = 1e-6  # derivation
     chern_number = 0 
-    for kx in np.arange(-pi, pi, delta):
-        for ky in np.arange(-pi, pi,delta):
+    for kx in np.arange(-pi, pi, 2*pi/n):
+        for ky in np.arange(-pi, pi,2*pi/n):
             H = hamiltonian(kx, ky)
             eigenvalue, eigenvector = np.linalg.eig(H)
             vector_0 = eigenvector[:, np.argsort(np.real(eigenvalue))[0]]
