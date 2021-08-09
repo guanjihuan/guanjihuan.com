@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      2340,         82]
-NotebookOptionsPosition[      2002,         67]
-NotebookOutlinePosition[      2387,         84]
-CellTagsIndexPosition[      2344,         81]
+NotebookDataLength[      2422,         82]
+NotebookOptionsPosition[      2082,         67]
+NotebookOutlinePosition[      2469,         84]
+CellTagsIndexPosition[      2426,         81]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -21,16 +21,16 @@ Notebook[{
 Cell[BoxData[{
  RowBox[{"Clear", "[", "\"\<`*\>\"", "]"}], "\n", 
  RowBox[{
-  RowBox[{"k1", "=", "kx"}], ";"}], "\n", 
+  RowBox[{"k1a1", "=", "kx"}], ";"}], "\n", 
  RowBox[{
-  RowBox[{"k2", "=", 
+  RowBox[{"k2a2", "=", 
    RowBox[{
     RowBox[{"kx", "/", "2"}], "+", 
     RowBox[{"ky", "*", 
      RowBox[{
       RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}]}]}]}], ";"}], "\n", 
  RowBox[{
-  RowBox[{"k3", "=", 
+  RowBox[{"k3a3", "=", 
    RowBox[{
     RowBox[{
      RowBox[{"-", "kx"}], "/", "2"}], "+", 
@@ -46,27 +46,27 @@ Cell[BoxData[{
       RowBox[{
        RowBox[{"{", 
         RowBox[{"0", ",", 
-         RowBox[{"Cos", "[", "k1", "]"}], ",", 
-         RowBox[{"Cos", "[", "k2", "]"}]}], "}"}], ",", 
+         RowBox[{"Cos", "[", "k1a1", "]"}], ",", 
+         RowBox[{"Cos", "[", "k2a2", "]"}]}], "}"}], ",", 
        RowBox[{"{", 
         RowBox[{
-         RowBox[{"Cos", "[", "k1", "]"}], ",", "0", ",", 
-         RowBox[{"Cos", "[", "k3", "]"}]}], "}"}], ",", 
+         RowBox[{"Cos", "[", "k1a1", "]"}], ",", "0", ",", 
+         RowBox[{"Cos", "[", "k3a3", "]"}]}], "}"}], ",", 
        RowBox[{"{", 
         RowBox[{
-         RowBox[{"Cos", "[", "k2", "]"}], ",", 
-         RowBox[{"Cos", "[", "k3", "]"}], ",", "0"}], "}"}]}], "}"}], 
+         RowBox[{"Cos", "[", "k2a2", "]"}], ",", 
+         RowBox[{"Cos", "[", "k3a3", "]"}], ",", "0"}], "}"}]}], "}"}], 
      ")"}]}]}], ";"}], "\n", 
  RowBox[{"MatrixForm", "[", "H", "]"}], "\n", 
  RowBox[{"eigenvalue", "=", 
   RowBox[{"MatrixForm", "[", 
    RowBox[{"Eigenvalues", "[", "H", "]"}], "]"}]}]}], "Input",
- CellChangeTimes->{{3.837485198864452*^9, 
-  3.837485198867505*^9}},ExpressionUUID->"a7abdb4e-e7ef-4556-9d32-\
-d94836d031ca"]
+ CellChangeTimes->{{3.837485198864452*^9, 3.837485198867505*^9}, {
+  3.837497369979506*^9, 3.8374974574378343`*^9}},
+ CellLabel->"",ExpressionUUID->"a7abdb4e-e7ef-4556-9d32-d94836d031ca"]
 },
-WindowSize->{1904, 997},
-WindowMargins->{{-8, Automatic}, {Automatic, 0}},
+WindowSize->{1147, 812},
+WindowMargins->{{Automatic, 228}, {22, Automatic}},
 Magnification:>1.7 Inherited,
 FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (2019\:5e744\:67088\
 \:65e5)",
@@ -83,7 +83,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 1440, 45, 419, "Input",ExpressionUUID->"a7abdb4e-e7ef-4556-9d32-d94836d031ca"]
+Cell[558, 20, 1520, 45, 514, "Input",ExpressionUUID->"a7abdb4e-e7ef-4556-9d32-d94836d031ca"]
 }
 ]
 *)

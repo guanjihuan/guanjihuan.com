@@ -1,18 +1,23 @@
+"""
+This code is supported by the website: https://www.guanjihuan.com
+The newest version of this code is on the web page: https://www.guanjihuan.com/archives/16730
+"""
+
 import numpy as np
 from math import *
 import guan
 
 def hamiltonian(kx, ky):  # kagome lattice
-    k1 = kx
-    k2 = kx/2+ky*sqrt(3)/2
-    k3 = -kx/2+ky*sqrt(3)/2
+    k1_dot_a1 = kx
+    k2_dot_a2 = kx/2+ky*sqrt(3)/2
+    k3_dot_a3 = -kx/2+ky*sqrt(3)/2
     h = np.zeros((3, 3), dtype=complex)
-    h[0, 1] = cos(k1)
-    h[0, 2] = cos(k2)
-    h[1, 2] = cos(k3)
+    h[0, 1] = 2*cos(k1_dot_a1)
+    h[0, 2] = 2*cos(k2_dot_a2)
+    h[1, 2] = 2*cos(k3_dot_a3)
     h = h + h.transpose().conj()
     t = 1
-    h = -2*t*h
+    h = -t*h
     return h
 
 kx_array = np.linspace(-pi ,pi, 100)

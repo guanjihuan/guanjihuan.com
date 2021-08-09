@@ -1,3 +1,8 @@
+"""
+This code is supported by the website: https://www.guanjihuan.com
+The newest version of this code is on the web page: https://www.guanjihuan.com/archives/16199
+"""
+
 import numpy as np
 from math import *
 import cmath
