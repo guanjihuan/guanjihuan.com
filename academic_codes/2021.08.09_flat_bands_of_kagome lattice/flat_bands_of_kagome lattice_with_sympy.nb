@@ -1,0 +1,90 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2340,         82]
+NotebookOptionsPosition[      2002,         67]
+NotebookOutlinePosition[      2387,         84]
+CellTagsIndexPosition[      2344,         81]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "\"\<`*\>\"", "]"}], "\n", 
+ RowBox[{
+  RowBox[{"k1", "=", "kx"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"k2", "=", 
+   RowBox[{
+    RowBox[{"kx", "/", "2"}], "+", 
+    RowBox[{"ky", "*", 
+     RowBox[{
+      RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}]}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"k3", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", "kx"}], "/", "2"}], "+", 
+    RowBox[{"ky", "*", 
+     RowBox[{
+      RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}]}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"H", "=", 
+   RowBox[{
+    RowBox[{"-", "2"}], "*", "t", "*", 
+    RowBox[{"(", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{"Cos", "[", "k1", "]"}], ",", 
+         RowBox[{"Cos", "[", "k2", "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Cos", "[", "k1", "]"}], ",", "0", ",", 
+         RowBox[{"Cos", "[", "k3", "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Cos", "[", "k2", "]"}], ",", 
+         RowBox[{"Cos", "[", "k3", "]"}], ",", "0"}], "}"}]}], "}"}], 
+     ")"}]}]}], ";"}], "\n", 
+ RowBox[{"MatrixForm", "[", "H", "]"}], "\n", 
+ RowBox[{"eigenvalue", "=", 
+  RowBox[{"MatrixForm", "[", 
+   RowBox[{"Eigenvalues", "[", "H", "]"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.837485198864452*^9, 
+  3.837485198867505*^9}},ExpressionUUID->"a7abdb4e-e7ef-4556-9d32-\
+d94836d031ca"]
+},
+WindowSize->{1904, 997},
+WindowMargins->{{-8, Automatic}, {Automatic, 0}},
+Magnification:>1.7 Inherited,
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (2019\:5e744\:67088\
+\:65e5)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1440, 45, 419, "Input",ExpressionUUID->"a7abdb4e-e7ef-4556-9d32-d94836d031ca"]
+}
+]
+*)
+
