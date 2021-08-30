@@ -12,15 +12,13 @@ def main():
 
 
 def Plot_3D_Scatter(x, y, z, value, xlabel='x', ylabel='y', zlabel='z', title='title', filename='a'):
-    from matplotlib.axes._axes import _log as matplotlib_axes_logger
-    matplotlib_axes_logger.setLevel('ERROR')  # 只显示error级别的通知
     import matplotlib.pyplot as plt
     from matplotlib.ticker import LinearLocator
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
     plt.subplots_adjust(bottom=0.1, right=0.8) 
     for i in range(np.array(x).shape[0]):
-        ax.scatter(x[i], y[i], z[i], marker='o', s=int(100*value[i]), c=(1,0,0))
+        ax.scatter(x[i], y[i], z[i], marker='o', s=int(100*value[i]), c=[(1,0,0)])
     ax.set_title(title, fontsize=20, fontfamily='Times New Roman')
     ax.set_xlabel(xlabel, fontsize=20, fontfamily='Times New Roman') 
     ax.set_ylabel(ylabel, fontsize=20, fontfamily='Times New Roman') 

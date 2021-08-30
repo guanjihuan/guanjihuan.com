@@ -11,14 +11,12 @@ def main():
 
 
 def Plot_2D_Scatter(x, y, value, xlabel='x', ylabel='y', title='title', filename='a'):
-    from matplotlib.axes._axes import _log as matplotlib_axes_logger
-    matplotlib_axes_logger.setLevel('ERROR')  # 只显示error级别的通知   
     import matplotlib.pyplot as plt
     fig = plt.figure()
     ax = fig.add_subplot(111)
     plt.subplots_adjust(bottom=0.2, right=0.8, left=0.2) 
     for i in range(np.array(x).shape[0]):
-        ax.scatter(x[i], y[i], marker='o', s=100*value[i], c=(1,0,0))
+        ax.scatter(x[i], y[i], marker='o', s=100*value[i], c=[(1,0,0)])
     ax.set_title(title, fontsize=20, fontfamily='Times New Roman')
     ax.set_xlabel(xlabel, fontsize=20, fontfamily='Times New Roman') 
     ax.set_ylabel(ylabel, fontsize=20, fontfamily='Times New Roman') 
