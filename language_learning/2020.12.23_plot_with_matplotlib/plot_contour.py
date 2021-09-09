@@ -31,8 +31,7 @@ def Plot_Contour(x,y,matrix,filename='a.jpg', titlename='Plot Contour'):
     cax = plt.axes([0.75, 0.15, 0.08, 0.73]) # color bar的位置 [左，下，宽度， 高度]
     cbar = fig.colorbar(contour, cax=cax)  # color bar
     cbar.ax.tick_params(labelsize=15) # 设置color bar刻度的字体大小
-    for l in cbar.ax.yaxis.get_ticklabels(): # 设置color bar刻度的字体
-        l.set_family('Times New Roman')
+    [l.set_family('Times New Roman') for l in cbar.ax.yaxis.get_ticklabels()] # 设置color bar刻度的字体
     # plt.savefig(filename, dpi=800) # 保存图片文件
     plt.show()
     plt.close('all')  # 关闭所有plt，防止循环画图时占用内存
