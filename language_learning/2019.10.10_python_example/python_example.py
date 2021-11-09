@@ -59,7 +59,7 @@ print('指定个数的等差数列：\n', np.linspace(-2, 2, 5))  # 区间是左
 print()
 
 print('随机数：\n', np.random.uniform(-2, 2))  # 随机浮点数
-print('随机整数：\n', np.random.randint(-10, 10))  # 区间是左闭右闭[-10, 10]
+print('随机整数：\n', np.random.randint(-10, 10))  # 区间是左闭右开[-10, 10)
 print()
 
 # 随机数除了使用numpy库，也使用random生成
