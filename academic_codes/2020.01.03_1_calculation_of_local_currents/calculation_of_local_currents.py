@@ -5,7 +5,6 @@ The newest version of this code is on the web page: https://www.guanjihuan.com/a
 
 import numpy as np
 import matplotlib.pyplot as plt
-import copy
 import time
 
 
@@ -81,7 +80,7 @@ def main():
 
 
 def transfer_matrix(fermi_energy, h00, h01, dim):   # 转移矩阵T。dim是传递矩阵h00和h01的维度
-    transfer = np.zeros((2*dim, 2*dim))*(0+0j)  # 0+0j用来转为复数,不然下面赋值会提示忽略了虚数部分
+    transfer = np.zeros((2*dim, 2*dim), dtype=complex)
     transfer[0:dim, 0:dim] = np.dot(np.linalg.inv(h01), fermi_energy*np.identity(dim)-h00)   # np.dot()等效于np.matmul()
     transfer[0:dim, dim:2*dim] = np.dot(-1*np.linalg.inv(h01), h01.transpose().conj())
     transfer[dim:2*dim, 0:dim] = np.identity(dim)
@@ -120,8 +119,8 @@ def Green_n(fermi_energy, h00, h01, width, length):  # 计算G_n
     right_self_energy, left_self_energy = self_energy_lead(fermi_energy, h00, h01, width, length)
     hamiltonian = matrix_center(width, length)
     green = np.linalg.inv(fermi_energy*np.identity(width*length)-hamiltonian-left_self_energy-right_self_energy)
-    right_self_energy = (right_self_energy - right_self_energy.transpose().conj())*(0+1j)
-    left_self_energy = (left_self_energy - left_self_energy.transpose().conj())*(0+1j)
+    right_self_energy = (right_self_energy - right_self_energy.transpose().conj())*1j
+    left_self_energy = (left_self_energy - left_self_energy.transpose().conj())*1j
     G_n = np.imag(np.dot(np.dot(green, left_self_energy), green.transpose().conj()))
     return G_n
 
