@@ -27,7 +27,8 @@ for i0 in range(len(authors)):
         if re.search('//zhuanlan.zhihu.com/p/', href): # 文章的链接
             if re.search('https:', href)==None:  # 如果链接不是完整的，那么补充完整
                 href = 'https:'+ href
-            match_href.append(href)
+            if href not in match_href:
+                match_href.append(href)
 # 对链接进行排序并写入文件
 numbers = []
 match_href_new = [] 
