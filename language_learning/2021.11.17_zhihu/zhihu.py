@@ -29,7 +29,7 @@ for i0 in range(len(authors)):
                 href = 'https:'+ href
             if href not in match_href:
                 match_href.append(href)
-# 对链接进行排序并写入文件
+# 对链接进行排序
 numbers = []
 match_href_new = [] 
 for href in match_href:
