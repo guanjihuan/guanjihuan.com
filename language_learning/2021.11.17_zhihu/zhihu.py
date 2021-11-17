@@ -39,7 +39,7 @@ for n in numbers:
 
 # 获取内容并写入文件
 f = open('zhihu.html', 'w', encoding='UTF-8') 
-f.write('<meta charset="utf-8">')
+f.write('<meta charset="utf-8"><style type="text/css">a{text-decoration: none;color: #0a5794;}a:hover {text-decoration: underline;color: red; }</style>')
 f.write('<p>'+str(year)+'.'+str(month).rjust(2,'0')+'.'+str(day).rjust(2,'0')+' 已更新</p>')
 for href in match_href_new: 
     try:
