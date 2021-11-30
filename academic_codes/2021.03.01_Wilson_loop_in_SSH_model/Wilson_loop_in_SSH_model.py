@@ -29,13 +29,21 @@ def main():
         # vector_array.append(vector*cmath.exp(1j*np.random.uniform(0, pi)))
 
     # 波函数固定一个规范
+    vector_sum = 0
     for i0 in range(Num_k):
-        vector_array[i0] = find_vector_with_fixed_gauge_by_making_one_component_real(vector_array[i0])
+        vector_sum += np.abs(vector_array[i0])
+    index = np.argmax(np.abs(vector_sum))
+    for i0 in range(Num_k):
+        vector_array[i0] = find_vector_with_fixed_gauge_by_making_one_component_real(vector_array[i0], index=index)
 
-    # 波函数固定一个规范
+    # # 波函数固定一个规范
     # import guan
+    # vector_sum = 0
     # for i0 in range(Num_k):
-    #     vector_array[i0] = guan.find_vector_with_fixed_gauge_by_making_one_component_real(vector_array[i0])
+    #     vector_sum += np.abs(vector_array[i0])
+    # index = np.argmax(np.abs(vector_sum))
+    # for i0 in range(Num_k):
+    #     vector_array[i0] = guan.find_vector_with_fixed_gauge_by_making_one_component_real(vector_array[i0], index=index)
 
     # 计算Wilson loop
     W_k = 1
@@ -55,10 +63,11 @@ def get_occupied_bands_vectors(x, matrix):
     return vector
 
 
-def find_vector_with_fixed_gauge_by_making_one_component_real(vector, precision=0.005):
-    index = np.argmax(np.abs(vector))
+def find_vector_with_fixed_gauge_by_making_one_component_real(vector, precision=0.005, index=None):
+    if index == None:
+        index = np.argmax(np.abs(vector))
     sign_pre = np.sign(np.imag(vector[index]))
-    for phase in np.arange(0, 2*pi, precision):
+    for phase in np.arange(0, 2*np.pi, precision):
         sign =  np.sign(np.imag(vector[index]*cmath.exp(1j*phase)))
         if np.abs(np.imag(vector[index]*cmath.exp(1j*phase))) < 1e-9 or sign == -sign_pre:
             break
@@ -66,7 +75,7 @@ def find_vector_with_fixed_gauge_by_making_one_component_real(vector, precision=
     vector = vector*cmath.exp(1j*phase)
     if np.real(vector[index]) < 0:
         vector = -vector
-    return vector 
+    return vector
 
 
 if __name__ == '__main__':
