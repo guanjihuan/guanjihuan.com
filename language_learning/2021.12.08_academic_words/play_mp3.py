@@ -14,7 +14,10 @@ pygame.mixer.init()
 for root, dirs, files in os.walk(directory):
     num_array = list(range(len(files)))
     random.shuffle(num_array)  # 随机播放
+    j0 = 0
     for i0 in num_array:
+        j0 += 1
+        print(j0)
         print(files[i0][:-4])
         print('https://www.ldoceonline.com/dictionary/'+files[i0][:-4], '\n')
         track = pygame.mixer.music.load(directory+files[i0])
