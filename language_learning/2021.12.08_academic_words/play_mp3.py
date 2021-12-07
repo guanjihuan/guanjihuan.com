@@ -8,8 +8,8 @@ import time
 import os
 import random
 
-# directory = 'C:/Users/user/Desktop/words_mp3_breProns/' # 英音
-directory = 'C:/Users/user/Desktop/words_mp3_ameProns/' # 美音
+# directory = 'words_mp3_breProns/' # 英音
+directory = 'words_mp3_ameProns/' # 美音
 pygame.mixer.init()
 for root, dirs, files in os.walk(directory):
     num_array = list(range(len(files)))
