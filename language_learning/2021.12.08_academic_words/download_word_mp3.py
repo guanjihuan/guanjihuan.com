@@ -18,7 +18,7 @@ for a_tag in all_a_tag:
     if re.search('https://www.ldoceonline.com/dictionary/', href):
         print(href[39:])
         exist_1 = os.path.exists('words_mp3_breProns/'+href[39:]+'.mp3')
-        exist_2 = os.path.exists('words_mp3_breProns/'+href[39:]+'.mp3')
+        exist_2 = os.path.exists('words_mp3_ameProns/'+href[39:]+'.mp3')
         if exist_1 and exist_2:
             continue
         header = {'User-Agent':'Mozilla/5.0 (X11; Fedora; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'}   # 头部信息
