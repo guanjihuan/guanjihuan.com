@@ -34,7 +34,7 @@ for content in contents:
             track = pygame.mixer.music.load(directory+word+'.mp3')
             pygame.mixer.music.play()
             translation = re.findall('<p>.*?</p>', content, re.S)[0][3:-4]
-            time.sleep(2.5)
+            time.sleep(2)
             print(translation, '\n')
-            time.sleep(0.5)  # 调节间隔时间
+            time.sleep(1)  # 调节间隔时间
             pygame.mixer.music.stop()
