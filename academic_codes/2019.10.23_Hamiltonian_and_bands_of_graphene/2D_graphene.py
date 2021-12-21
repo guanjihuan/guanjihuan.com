@@ -33,8 +33,8 @@ def hamiltonian(k1, k2, M, t1, a=1/sqrt(3)):  # graphene哈密顿量（a为原�
 
 def main():
     hamiltonian0 = functools.partial(hamiltonian, M=0, t1=1, a=1/sqrt(3))  # 使用偏函数，固定一些参数
-    k1 = np.linspace(-2*pi, 2*pi, 800)
-    k2 = np.linspace(-2*pi, 2*pi, 800)
+    k1 = np.linspace(-2*pi, 2*pi, 500)
+    k2 = np.linspace(-2*pi, 2*pi, 500)
     plot_bands_two_dimension(k1, k2, hamiltonian0)
 
 
@@ -57,7 +57,7 @@ def plot_bands_two_dimension(k1, k2, hamiltonian):
     ax = fig.gca(projection='3d')
     k1, k2 = np.meshgrid(k1, k2)
     for dim0 in range(dim):
-        ax.plot_surface(k1, k2, eigenvalue_k[:, :, dim0], cmap=cm.coolwarm, linewidth=0, antialiased=False)  
+        ax.plot_surface(k1, k2, eigenvalue_k[:, :, dim0], rcount=200, ccount=200, cmap=cm.coolwarm, linewidth=0, antialiased=False)  
     plt.show()
 
 

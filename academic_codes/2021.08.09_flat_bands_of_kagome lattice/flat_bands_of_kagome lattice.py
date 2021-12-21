@@ -20,7 +20,7 @@ def hamiltonian(kx, ky):  # kagome lattice
     h = -t*h
     return h
 
-kx_array = np.linspace(-pi ,pi, 100)
-ky_array = np.linspace(-pi ,pi, 100)
+kx_array = np.linspace(-pi ,pi, 500)
+ky_array = np.linspace(-pi ,pi, 500)
 eigenvalue_array = guan.calculate_eigenvalue_with_two_parameters(kx_array, ky_array, hamiltonian)
-guan.plot_3d_surface(kx_array, ky_array, eigenvalue_array, xlabel='kx', ylabel='ky', zlabel='E')
+guan.plot_3d_surface(kx_array, ky_array, eigenvalue_array, xlabel='kx', ylabel='ky', zlabel='E', rcount=200, ccount=200)
