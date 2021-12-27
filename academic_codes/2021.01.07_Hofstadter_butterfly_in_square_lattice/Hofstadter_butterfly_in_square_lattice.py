@@ -32,7 +32,7 @@ def main():
 
 
 def hamiltonian(width, length, B):   # 方格子哈密顿量
-    h = np.zeros((width*length, width*length))*(1+0j)
+    h = np.zeros((width*length, width*length), dtype=complex)
     # y方向的跃迁
     for x in range(length):
         for y in range(width-1):
