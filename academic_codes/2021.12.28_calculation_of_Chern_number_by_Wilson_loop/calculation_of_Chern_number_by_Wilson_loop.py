@@ -24,39 +24,48 @@ def hamiltonian(kx, ky):  # 量子反常霍尔QAH模型（该参数对应的陈�
 
 def main():
     start_time = time.time()
-    n = 100  # 积分密度
-    delta = 2*pi/n
+    n1 = 10 # small plaquettes精度
+    n2 = 800 # Wilson loop精度
+    delta = 2*pi/n1
     chern_number = 0
     for kx in np.arange(-pi, pi, delta):
         for ky in np.arange(-pi, pi, delta):
-            H = hamiltonian(kx, ky)
-            eigenvalue, eigenvector = np.linalg.eig(H)
-            vector = eigenvector[:, np.argsort(np.real(eigenvalue))[0]]  # 价带波函数
-            # vector = eigenvector[:, np.argsort(np.real(eigenvalue))[0]]*cmath.exp(1j*np.random.uniform(0, pi))  # 验证规范不依赖性
-           
-            H_delta_kx = hamiltonian(kx+delta, ky) 
-            eigenvalue, eigenvector = np.linalg.eig(H_delta_kx)
-            vector_delta_kx = eigenvector[:, np.argsort(np.real(eigenvalue))[0]]   # 略偏离kx的波函数
-
-            H_delta_ky = hamiltonian(kx, ky+delta)  
-            eigenvalue, eigenvector = np.linalg.eig(H_delta_ky)
-            vector_delta_ky = eigenvector[:, np.argsort(np.real(eigenvalue))[0]]  # 略偏离ky的波函数
-
-            H_delta_kx_ky = hamiltonian(kx+delta, ky+delta)  
-            eigenvalue, eigenvector = np.linalg.eig(H_delta_kx_ky)
-            vector_delta_kx_ky = eigenvector[:, np.argsort(np.real(eigenvalue))[0]]  # 略偏离kx和ky的波函数
-
-            line_1 = np.dot(vector.transpose().conj(), vector_delta_kx)
-            line_2 = np.dot(vector_delta_kx.transpose().conj(), vector_delta_kx_ky)
-            line_3 = np.dot(vector_delta_kx_ky.transpose().conj(), vector_delta_ky)
-            line_4 = np.dot(vector_delta_ky.transpose().conj(), vector)
-
-            arg = np.log(np.dot(np.dot(np.dot(line_1, line_2), line_3), line_4))/1j
+            vector_array = []
+            # line_1
+            for i2 in range(n2+1):
+                H_delta = hamiltonian(kx+delta/n2*i2, ky) 
+                eigenvalue, eigenvector = np.linalg.eig(H_delta)
+                vector_delta = eigenvector[:, np.argsort(np.real(eigenvalue))[0]]
+                # vector_delta = eigenvector[:, np.argsort(np.real(eigenvalue))[0]]*cmath.exp(1j*np.random.uniform(0, pi))  # 验证规范不依赖性
+                vector_array.append(vector_delta)
+            # line_2
+            for i2 in range(n2):
+                H_delta = hamiltonian(kx+delta, ky+delta/n2*(i2+1))  
+                eigenvalue, eigenvector = np.linalg.eig(H_delta)
+                vector_delta = eigenvector[:, np.argsort(np.real(eigenvalue))[0]]
+                vector_array.append(vector_delta)
+            # line_3
+            for i2 in range(n2):
+                H_delta = hamiltonian(kx+delta-delta/n2*(i2+1), ky+delta)  
+                eigenvalue, eigenvector = np.linalg.eig(H_delta)
+                vector_delta = eigenvector[:, np.argsort(np.real(eigenvalue))[0]]
+                vector_array.append(vector_delta)
+            # line_4
+            for i2 in range(n2-1):
+                H_delta = hamiltonian(kx, ky+delta-delta/n2*(i2+1))  
+                eigenvalue, eigenvector = np.linalg.eig(H_delta)
+                vector_delta = eigenvector[:, np.argsort(np.real(eigenvalue))[0]]
+                vector_array.append(vector_delta)
+            Wilson_loop = 1
+            for i0 in range(len(vector_array)-1):
+                Wilson_loop = Wilson_loop*np.dot(vector_array[i0].transpose().conj(), vector_array[i0+1])
+            Wilson_loop = Wilson_loop*np.dot(vector_array[len(vector_array)-1].transpose().conj(), vector_array[0])
+            arg = np.log(Wilson_loop)/1j
             chern_number = chern_number + arg
     chern_number = chern_number/(2*pi)
     print('Chern number = ', chern_number)
     end_time = time.time()
-    print('运行时间(min)=', (end_time-start_time)/60)
+    print('运行时间（秒）=', end_time-start_time)
 
 
 if __name__ == '__main__':
