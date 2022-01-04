@@ -24,7 +24,7 @@ def hamiltonian(kx, ky):  # 量子反常霍尔QAH模型（该参数对应的陈�
 
 def main():
     start_time = time.time()
-    n = 200  # 积分密度
+    n = 100  # 积分密度
     delta = 2*pi/n
     chern_number = 0
     for kx in np.arange(-pi, pi, delta):
@@ -51,8 +51,8 @@ def main():
             line_3 = np.dot(vector_delta_kx_ky.transpose().conj(), vector_delta_ky)
             line_4 = np.dot(vector_delta_ky.transpose().conj(), vector)
 
-            angle = np.log(np.dot(np.dot(np.dot(line_1, line_2), line_3), line_4))/1j
-            chern_number = chern_number + angle
+            arg = np.log(np.dot(np.dot(np.dot(line_1, line_2), line_3), line_4))/1j
+            chern_number = chern_number + arg
     chern_number = chern_number/(2*pi)
     print('Chern number = ', chern_number)
     end_time = time.time()
