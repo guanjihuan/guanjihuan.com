@@ -80,13 +80,14 @@ def main():
         H_from_lead_4_to_center = np.zeros((width, width*length), dtype=complex)
         H_from_lead_5_to_center = np.zeros((width, width*length), dtype=complex)
         H_from_lead_6_to_center = np.zeros((width, width*length), dtype=complex)
+        move = 0 # the step of leads 2,3,6,5 moving to center
         for i0 in range(width):
             H_from_lead_1_to_center[i0, i0] = 1
-            H_from_lead_2_to_center[i0, width*i0+(width-1)] = 1
-            H_from_lead_3_to_center[i0, width*(length-1-i0)+(width-1)] = 1
+            H_from_lead_2_to_center[i0, width*(move+i0)+(width-1)] = 1
+            H_from_lead_3_to_center[i0, width*(length-move-1-i0)+(width-1)] = 1
             H_from_lead_4_to_center[i0, width*(length-1)+i0] = 1
-            H_from_lead_5_to_center[i0, width*(length-1-i0)+0] = 1
-            H_from_lead_6_to_center[i0, width*i0+0] = 1
+            H_from_lead_5_to_center[i0, width*(length-move-1-i0)+0] = 1
+            H_from_lead_6_to_center[i0, width*(move+i0)+0] = 1
 
         # 自能    
         self_energy_1 = np.dot(np.dot(H_from_lead_1_to_center.transpose().conj(), lead_1), H_from_lead_1_to_center)
@@ -100,19 +101,19 @@ def main():
         green = np.linalg.inv(fermi_energy*np.eye(width*length)-H_scattering_region-self_energy_1-self_energy_2-self_energy_3-self_energy_4-self_energy_5-self_energy_6)
 
         # Gamma矩阵
-        self_energy_1 = 1j*(self_energy_1-self_energy_1.transpose().conj())
-        self_energy_2 = 1j*(self_energy_2-self_energy_2.transpose().conj())
-        self_energy_3 = 1j*(self_energy_3-self_energy_3.transpose().conj())
-        self_energy_4 = 1j*(self_energy_4-self_energy_4.transpose().conj())
-        self_energy_5 = 1j*(self_energy_5-self_energy_5.transpose().conj())
-        self_energy_6 = 1j*(self_energy_6-self_energy_6.transpose().conj())
+        gamma_1 = 1j*(self_energy_1-self_energy_1.transpose().conj())
+        gamma_2 = 1j*(self_energy_2-self_energy_2.transpose().conj())
+        gamma_3 = 1j*(self_energy_3-self_energy_3.transpose().conj())
+        gamma_4 = 1j*(self_energy_4-self_energy_4.transpose().conj())
+        gamma_5 = 1j*(self_energy_5-self_energy_5.transpose().conj())
+        gamma_6 = 1j*(self_energy_6-self_energy_6.transpose().conj())
 
         # Transmission
-        transmission_12 = np.trace(np.dot(np.dot(np.dot(self_energy_1, green), self_energy_2), green.transpose().conj()))
-        transmission_13 = np.trace(np.dot(np.dot(np.dot(self_energy_1, green), self_energy_3), green.transpose().conj()))
-        transmission_14 = np.trace(np.dot(np.dot(np.dot(self_energy_1, green), self_energy_4), green.transpose().conj()))
-        transmission_15 = np.trace(np.dot(np.dot(np.dot(self_energy_1, green), self_energy_5), green.transpose().conj()))
-        transmission_16 = np.trace(np.dot(np.dot(np.dot(self_energy_1, green), self_energy_6), green.transpose().conj()))
+        transmission_12 = np.trace(np.dot(np.dot(np.dot(gamma_1, green), gamma_2), green.transpose().conj()))
+        transmission_13 = np.trace(np.dot(np.dot(np.dot(gamma_1, green), gamma_3), green.transpose().conj()))
+        transmission_14 = np.trace(np.dot(np.dot(np.dot(gamma_1, green), gamma_4), green.transpose().conj()))
+        transmission_15 = np.trace(np.dot(np.dot(np.dot(gamma_1, green), gamma_5), green.transpose().conj()))
+        transmission_16 = np.trace(np.dot(np.dot(np.dot(gamma_1, green), gamma_6), green.transpose().conj()))
 
         transmission_12_array.append(np.real(transmission_12))
         transmission_13_array.append(np.real(transmission_13))

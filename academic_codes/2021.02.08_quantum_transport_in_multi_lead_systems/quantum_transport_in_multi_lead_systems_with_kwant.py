@@ -20,18 +20,21 @@ def make_system():
     #               lead2         lead3
     #   lead1(L)                          lead4(R)  
     #               lead6         lead5
+
+    move = 0 # the step of leads 2,3,6,5 moving to center
+
     lead1 = kwant.Builder(kwant.TranslationalSymmetry((-a, 0)))
     lead1[(lat(0, j) for j in range(W))] = 0
     lead1[lat.neighbors()] = -t
     syst.attach_lead(lead1) 
 
     lead2 = kwant.Builder(kwant.TranslationalSymmetry((0, -a)))
-    lead2[(lat(j, 0) for j in range(W))] = 0
+    lead2[(lat(move+j, 0) for j in range(W))] = 0
     lead2[lat.neighbors()] = -t  
     syst.attach_lead(lead2) 
 
     lead3 = kwant.Builder(kwant.TranslationalSymmetry((0, -a)))
-    lead3[(lat(j+(L-W), 0) for j in range(W))] = 0
+    lead3[(lat(j+(L-W-move), 0) for j in range(W))] = 0
     lead3[lat.neighbors()] = -t  
     syst.attach_lead(lead3) 
 

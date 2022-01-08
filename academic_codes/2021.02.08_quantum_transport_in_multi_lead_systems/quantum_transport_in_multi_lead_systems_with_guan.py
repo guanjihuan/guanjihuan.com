@@ -67,13 +67,14 @@ def main():
         h_lead4_to_center = np.zeros((width, width*length), dtype=complex)
         h_lead5_to_center = np.zeros((width, width*length), dtype=complex)
         h_lead6_to_center = np.zeros((width, width*length), dtype=complex)
+        move = 0 # the step of leads 2,3,6,5 moving to center
         for i0 in range(width):
             h_lead1_to_center[i0, i0] = 1
-            h_lead2_to_center[i0, width*i0+(width-1)] = 1
-            h_lead3_to_center[i0, width*(length-1-i0)+(width-1)] = 1
+            h_lead2_to_center[i0, width*(move+i0)+(width-1)] = 1
+            h_lead3_to_center[i0, width*(length-move-1-i0)+(width-1)] = 1
             h_lead4_to_center[i0, width*(length-1)+i0] = 1
-            h_lead5_to_center[i0, width*(length-1-i0)+0] = 1
-            h_lead6_to_center[i0, width*i0+0] = 1
+            h_lead5_to_center[i0, width*(length-move-1-i0)+0] = 1
+            h_lead6_to_center[i0, width*(move+i0)+0] = 1
         # 自能    
         self_energy1, gamma1 = guan.self_energy_of_lead_with_h_lead_to_center(fermi_energy, lead_h00, lead_h01, h_lead1_to_center)
         self_energy2, gamma2 = guan.self_energy_of_lead_with_h_lead_to_center(fermi_energy, lead_h00, lead_h01, h_lead2_to_center)

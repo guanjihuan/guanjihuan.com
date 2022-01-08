@@ -91,9 +91,9 @@ def conductance(fermi_energy, h00, h01, nx=300):  # 计算电导
         else:
             green_nn_n = np.linalg.inv(fermi_energy*np.identity(dim)-h00-np.dot(np.dot(h01.transpose().conj(), green_nn_n), h01)-right_self_energy)
             green_0n_n = np.dot(np.dot(green_0n_n, h01), green_nn_n)
-    right_self_energy = (right_self_energy - right_self_energy.transpose().conj())*(0+1j)
-    left_self_energy = (left_self_energy - left_self_energy.transpose().conj())*(0+1j)
-    transmission = np.trace(np.dot(np.dot(np.dot(left_self_energy, green_0n_n), right_self_energy), green_0n_n.transpose().conj()))
+    gamma_right = (right_self_energy - right_self_energy.transpose().conj())*(0+1j)
+    gamma_left = (left_self_energy - left_self_energy.transpose().conj())*(0+1j)
+    transmission = np.trace(np.dot(np.dot(np.dot(gamma_left, green_0n_n), gamma_right), green_0n_n.transpose().conj()))
     return transmission  # 返回电导值
 
 
