@@ -62,7 +62,7 @@ def main():
 
         # 由于镜面对称以及xy各项同性，因此这里六个电极的表面格林函数具有相同的形式
         lead_1 = copy.deepcopy(right_lead_surface)  # 镜面对称使得lead_1=lead_4
-        lead_2 = copy.deepcopy(right_lead_surface)  # xy各项同性使得lead_2=lead_4
+        lead_2 = copy.deepcopy(right_lead_surface)  # xy各向同性使得lead_2=lead_4
         lead_3 = copy.deepcopy(right_lead_surface)
         lead_4 = copy.deepcopy(right_lead_surface)  
         lead_5 = copy.deepcopy(right_lead_surface)
