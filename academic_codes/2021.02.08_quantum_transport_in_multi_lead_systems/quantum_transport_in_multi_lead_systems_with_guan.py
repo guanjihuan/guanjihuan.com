@@ -7,29 +7,29 @@ import numpy as np
 import time
 import guan
 
-def lead_matrix_00(y):  
-    h00 = np.zeros((y, y))
-    for y0 in range(y-1):
-        h00[y0, y0+1] = 1
-        h00[y0+1, y0] = 1
+def get_lead_h00(width):  
+    h00 = np.zeros((width, width))
+    for i0 in range(width-1):
+        h00[i0, i0+1] = 1
+        h00[i0+1, i0] = 1
     return h00
 
 
-def lead_matrix_01(y):
-    h01 = np.identity(y)
+def get_lead_h01(width):
+    h01 = np.identity(width)
     return h01
 
 
-def scattering_region(x, y):
-    h = np.zeros((x*y, x*y))
-    for x0 in range(x-1):
-        for y0 in range(y):
-            h[x0*y+y0, (x0+1)*y+y0] = 1 # x方向的跃迁
-            h[(x0+1)*y+y0, x0*y+y0] = 1
-    for x0 in range(x):
-        for y0 in range(y-1):
-            h[x0*y+y0, x0*y+y0+1] = 1 # y方向的跃迁
-            h[x0*y+y0+1, x0*y+y0] = 1 
+def get_center_hamiltonian(Nx, Ny):
+    h = np.zeros((Nx*Ny, Nx*Ny))
+    for x0 in range(Nx-1):
+        for y0 in range(Ny):
+            h[x0*Ny+y0, (x0+1)*Ny+y0] = 1 # x方向的跃迁
+            h[(x0+1)*Ny+y0, x0*Ny+y0] = 1
+    for x0 in range(Nx):
+        for y0 in range(Ny-1):
+            h[x0*Ny+y0, x0*Ny+y0+1] = 1 # y方向的跃迁
+            h[x0*Ny+y0+1, x0*Ny+y0] = 1 
     return h
 
 
@@ -40,11 +40,11 @@ def main():
     fermi_energy_array = np.arange(-4, 4, .01)
 
     # 中心区的哈密顿量
-    H_scattering_region = scattering_region(x=length, y=width)
+    H_center = get_center_hamiltonian(Nx=length, Ny=width)
 
     # 电极的h00和h01
-    lead_h00 = lead_matrix_00(width)
-    lead_h01 = lead_matrix_01(width)
+    lead_h00 = get_lead_h00(width)
+    lead_h01 = get_lead_h01(width)
     
     transmission_12_array = []
     transmission_13_array = []
@@ -84,7 +84,7 @@ def main():
         self_energy6, gamma6 = guan.self_energy_of_lead_with_h_lead_to_center(fermi_energy, lead_h00, lead_h01, h_lead6_to_center)
 
         # 整体格林函数
-        green = np.linalg.inv(fermi_energy*np.eye(width*length)-H_scattering_region-self_energy1-self_energy2-self_energy3-self_energy4-self_energy5-self_energy6)
+        green = np.linalg.inv(fermi_energy*np.eye(width*length)-H_center-self_energy1-self_energy2-self_energy3-self_energy4-self_energy5-self_energy6)
 
         # Transmission
         transmission_12 = np.trace(np.dot(np.dot(np.dot(gamma1, green), gamma2), green.transpose().conj()))

@@ -9,29 +9,29 @@ import copy
 import time
 
 
-def lead_matrix_00(y):  
-    h00 = np.zeros((y, y))
-    for y0 in range(y-1):
-        h00[y0, y0+1] = 1
-        h00[y0+1, y0] = 1
+def get_lead_h00(width):  
+    h00 = np.zeros((width, width))
+    for i0 in range(width-1):
+        h00[i0, i0+1] = 1
+        h00[i0+1, i0] = 1
     return h00
 
 
-def lead_matrix_01(y):
-    h01 = np.identity(y)
+def get_lead_h01(width):
+    h01 = np.identity(width)
     return h01
 
 
-def scattering_region(x, y):
-    h = np.zeros((x*y, x*y))
-    for x0 in range(x-1):
-        for y0 in range(y):
-            h[x0*y+y0, (x0+1)*y+y0] = 1 # x方向的跃迁
-            h[(x0+1)*y+y0, x0*y+y0] = 1
-    for x0 in range(x):
-        for y0 in range(y-1):
-            h[x0*y+y0, x0*y+y0+1] = 1 # y方向的跃迁
-            h[x0*y+y0+1, x0*y+y0] = 1 
+def get_center_hamiltonian(Nx, Ny):
+    h = np.zeros((Nx*Ny, Nx*Ny))
+    for x0 in range(Nx-1):
+        for y0 in range(Ny):
+            h[x0*Ny+y0, (x0+1)*Ny+y0] = 1 # x方向的跃迁
+            h[(x0+1)*Ny+y0, x0*Ny+y0] = 1
+    for x0 in range(Nx):
+        for y0 in range(Ny-1):
+            h[x0*Ny+y0, x0*Ny+y0+1] = 1 # y方向的跃迁
+            h[x0*Ny+y0+1, x0*Ny+y0] = 1 
     return h
 
 
@@ -42,11 +42,11 @@ def main():
     fermi_energy_array = np.arange(-4, 4, .01)
 
     # 中心区的哈密顿量
-    H_scattering_region = scattering_region(x=length, y=width)
+    H_center = get_center_hamiltonian(Nx=length, Ny=width)
 
     # 电极的h00和h01
-    lead_h00 = lead_matrix_00(width)
-    lead_h01 = lead_matrix_01(width)
+    lead_h00 = get_lead_h00(width)
+    lead_h01 = get_lead_h01(width)
     
     transmission_12_array = []
     transmission_13_array = []
@@ -74,31 +74,31 @@ def main():
         #               lead6         lead5 
 
         # 电极到中心区的跃迁矩阵
-        H_from_lead_1_to_center = np.zeros((width, width*length), dtype=complex)
-        H_from_lead_2_to_center = np.zeros((width, width*length), dtype=complex)
-        H_from_lead_3_to_center = np.zeros((width, width*length), dtype=complex)
-        H_from_lead_4_to_center = np.zeros((width, width*length), dtype=complex)
-        H_from_lead_5_to_center = np.zeros((width, width*length), dtype=complex)
-        H_from_lead_6_to_center = np.zeros((width, width*length), dtype=complex)
+        H_lead_1_to_center = np.zeros((width, width*length), dtype=complex)
+        H_lead_2_to_center = np.zeros((width, width*length), dtype=complex)
+        H_lead_3_to_center = np.zeros((width, width*length), dtype=complex)
+        H_lead_4_to_center = np.zeros((width, width*length), dtype=complex)
+        H_lead_5_to_center = np.zeros((width, width*length), dtype=complex)
+        H_lead_6_to_center = np.zeros((width, width*length), dtype=complex)
         move = 0 # the step of leads 2,3,6,5 moving to center
         for i0 in range(width):
-            H_from_lead_1_to_center[i0, i0] = 1
-            H_from_lead_2_to_center[i0, width*(move+i0)+(width-1)] = 1
-            H_from_lead_3_to_center[i0, width*(length-move-1-i0)+(width-1)] = 1
-            H_from_lead_4_to_center[i0, width*(length-1)+i0] = 1
-            H_from_lead_5_to_center[i0, width*(length-move-1-i0)+0] = 1
-            H_from_lead_6_to_center[i0, width*(move+i0)+0] = 1
+            H_lead_1_to_center[i0, i0] = 1
+            H_lead_2_to_center[i0, width*(move+i0)+(width-1)] = 1
+            H_lead_3_to_center[i0, width*(length-move-1-i0)+(width-1)] = 1
+            H_lead_4_to_center[i0, width*(length-1)+i0] = 1
+            H_lead_5_to_center[i0, width*(length-move-1-i0)+0] = 1
+            H_lead_6_to_center[i0, width*(move+i0)+0] = 1
 
         # 自能    
-        self_energy_1 = np.dot(np.dot(H_from_lead_1_to_center.transpose().conj(), lead_1), H_from_lead_1_to_center)
-        self_energy_2 = np.dot(np.dot(H_from_lead_2_to_center.transpose().conj(), lead_2), H_from_lead_2_to_center)
-        self_energy_3 = np.dot(np.dot(H_from_lead_3_to_center.transpose().conj(), lead_3), H_from_lead_3_to_center)
-        self_energy_4 = np.dot(np.dot(H_from_lead_4_to_center.transpose().conj(), lead_4), H_from_lead_4_to_center)
-        self_energy_5 = np.dot(np.dot(H_from_lead_5_to_center.transpose().conj(), lead_5), H_from_lead_5_to_center)
-        self_energy_6 = np.dot(np.dot(H_from_lead_6_to_center.transpose().conj(), lead_6), H_from_lead_6_to_center)
+        self_energy_1 = np.dot(np.dot(H_lead_1_to_center.transpose().conj(), lead_1), H_lead_1_to_center)
+        self_energy_2 = np.dot(np.dot(H_lead_2_to_center.transpose().conj(), lead_2), H_lead_2_to_center)
+        self_energy_3 = np.dot(np.dot(H_lead_3_to_center.transpose().conj(), lead_3), H_lead_3_to_center)
+        self_energy_4 = np.dot(np.dot(H_lead_4_to_center.transpose().conj(), lead_4), H_lead_4_to_center)
+        self_energy_5 = np.dot(np.dot(H_lead_5_to_center.transpose().conj(), lead_5), H_lead_5_to_center)
+        self_energy_6 = np.dot(np.dot(H_lead_6_to_center.transpose().conj(), lead_6), H_lead_6_to_center)
 
         # 整体格林函数
-        green = np.linalg.inv(fermi_energy*np.eye(width*length)-H_scattering_region-self_energy_1-self_energy_2-self_energy_3-self_energy_4-self_energy_5-self_energy_6)
+        green = np.linalg.inv(fermi_energy*np.eye(width*length)-H_center-self_energy_1-self_energy_2-self_energy_3-self_energy_4-self_energy_5-self_energy_6)
 
         # Gamma矩阵
         gamma_1 = 1j*(self_energy_1-self_energy_1.transpose().conj())
