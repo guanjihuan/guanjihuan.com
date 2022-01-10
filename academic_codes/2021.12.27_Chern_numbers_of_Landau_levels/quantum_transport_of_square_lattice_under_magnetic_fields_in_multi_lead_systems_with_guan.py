@@ -36,8 +36,8 @@ def get_center_hamiltonian(Nx, Ny, B):
 
 def main():
     start_time = time.time()
-    width = 20
-    length = 70
+    width = 21
+    length = 72
     fermi_energy_array = np.arange(-4, 4, .05)
 
     # 中心区的哈密顿量
