@@ -25,7 +25,7 @@ def hamiltonian(kx, ky, Ny, B):
 
 
 def main():
-    Ny = 40
+    Ny = 20
 
     k_array = np.linspace(-pi, pi, 100)
     H_k = functools.partial(hamiltonian, ky=0, Ny=Ny, B=1/Ny)

@@ -39,7 +39,7 @@ def hamiltonian(kx, ky, Ny, a, B):
 
 
 def main():
-    Ny = 10
+    Ny = 5
     a = 1
 
     k_array = np.linspace(-pi, pi, 100)
