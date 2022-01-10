@@ -36,9 +36,9 @@ def get_center_hamiltonian(Nx, Ny, B):
 
 def main():
     start_time = time.time()
-    width = 30
-    length = 80
-    fermi_energy_array = np.arange(-4, 4, .02)
+    width = 20
+    length = 70
+    fermi_energy_array = np.arange(-4, 4, .05)
 
     # 中心区的哈密顿量
     H_cetner = get_center_hamiltonian(Nx=length, Ny=width, B=1/width)
@@ -68,7 +68,7 @@ def main():
         h_lead4_to_center = np.zeros((width, width*length), dtype=complex)
         h_lead5_to_center = np.zeros((width, width*length), dtype=complex)
         h_lead6_to_center = np.zeros((width, width*length), dtype=complex)
-        move = 10
+        move = 10 # the step of leads 2,3,6,5 moving to center
         for i0 in range(width):
             h_lead1_to_center[i0, i0] = 1
             h_lead2_to_center[i0, width*(move+i0)+(width-1)] = 1
