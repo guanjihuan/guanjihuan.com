@@ -48,13 +48,13 @@ def matrix_center(width=10, length=300):  # 中心区哈密顿量
     # 中间加势垒
     for j0 in range(6):
         for i0 in range(6): 
-            hamiltonian[width*(np.int(length/2)-3+j0)+np.int(width/2)-3+i0, width*(np.int(length/2)-3+j0)+np.int(width/2)-3+i0]= 1e8
+            hamiltonian[width*(int(length/2)-3+j0)+int(width/2)-3+i0, width*(int(length/2)-3+j0)+int(width/2)-3+i0]= 1e8
     return hamiltonian
 
 
 def main():
     start_time = time.time()
-    fermi_energy = 1
+    fermi_energy = 0
     width = 60
     length = 100
     h00 = matrix_00(width)
