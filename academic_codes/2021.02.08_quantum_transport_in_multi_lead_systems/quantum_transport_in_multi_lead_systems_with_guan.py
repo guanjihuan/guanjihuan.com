@@ -55,13 +55,24 @@ def main():
         #               lead2         lead3
         #   lead1(L)                          lead4(R)  
         #               lead6         lead5 
-        transmission_matrix = guan.calculate_six_terminal_transmission_matrix(fermi_energy, h00_for_lead_4=lead_h00, h01_for_lead_4=lead_h01, h00_for_lead_2=lead_h00, h01_for_lead_2=lead_h01, center_hamiltonian=center_hamiltonian, width=width, length=length, internal_degree=1, moving_step_of_leads=0)
-        transmission_12_array.append(transmission_matrix[0, 1])
-        transmission_13_array.append(transmission_matrix[0, 2])
-        transmission_14_array.append(transmission_matrix[0, 3])
-        transmission_15_array.append(transmission_matrix[0, 4])
-        transmission_16_array.append(transmission_matrix[0, 5])
-        transmission_1_all_array.append(transmission_matrix[0, 1]+transmission_matrix[0, 2]+transmission_matrix[0, 3]+transmission_matrix[0, 4]+transmission_matrix[0, 5])
+
+        transmission_12, transmission_13, transmission_14, transmission_15, transmission_16 = guan.calculate_six_terminal_transmissions_from_lead_1(fermi_energy, h00_for_lead_4=lead_h00, h01_for_lead_4=lead_h01, h00_for_lead_2=lead_h00, h01_for_lead_2=lead_h01, center_hamiltonian=center_hamiltonian, width=width, length=length, internal_degree=1, moving_step_of_leads=0)
+        transmission_12_array.append(transmission_12)
+        transmission_13_array.append(transmission_13)
+        transmission_14_array.append(transmission_14)
+        transmission_15_array.append(transmission_15)
+        transmission_16_array.append(transmission_16)
+        transmission_1_all_array.append(\
+            transmission_12+transmission_13+transmission_14+transmission_15+transmission_16)
+
+        # transmission_matrix = guan.calculate_six_terminal_transmission_matrix(fermi_energy, h00_for_lead_4=lead_h00, h01_for_lead_4=lead_h01, h00_for_lead_2=lead_h00, h01_for_lead_2=lead_h01, center_hamiltonian=center_hamiltonian, width=width, length=length, internal_degree=1, moving_step_of_leads=0)
+        # transmission_12_array.append(transmission_matrix[0, 1])
+        # transmission_13_array.append(transmission_matrix[0, 2])
+        # transmission_14_array.append(transmission_matrix[0, 3])
+        # transmission_15_array.append(transmission_matrix[0, 4])
+        # transmission_16_array.append(transmission_matrix[0, 5])
+        # transmission_1_all_array.append(transmission_matrix[0, 1]+transmission_matrix[0, 2]+transmission_matrix[0, 3]+transmission_matrix[0, 4]+transmission_matrix[0, 5])
+
     guan.plot(fermi_energy_array, transmission_12_array, xlabel='Fermi energy', ylabel='Transmission_12')
     guan.plot(fermi_energy_array, transmission_13_array, xlabel='Fermi energy', ylabel='Transmission_13')
     guan.plot(fermi_energy_array, transmission_14_array, xlabel='Fermi energy', ylabel='Transmission_14')
@@ -69,7 +80,7 @@ def main():
     guan.plot(fermi_energy_array, transmission_16_array, xlabel='Fermi energy', ylabel='Transmission_16')
     guan.plot(fermi_energy_array, transmission_1_all_array, xlabel='Fermi energy', ylabel='Transmission_1_all')
     end_time = time.time()
-    print('运行时间=', end_time-start_time)
+    print('运行时间（分）=', (end_time-start_time)/60)
 
 
 if __name__ == '__main__':
