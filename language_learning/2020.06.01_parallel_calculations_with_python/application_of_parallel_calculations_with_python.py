@@ -24,8 +24,8 @@ if __name__ == '__main__':
     end_time = time.perf_counter()
     print('运行时间=', (end_time-start_time), '\n')
     f = open('result.txt', 'w')
-    for job_index in range(cpus):
-        with open('task_index='+str(job_index)+'.txt', 'r') as f0:
+    for task_index in range(cpus):
+        with open('task_index='+str(task_index)+'.txt', 'r') as f0:
             text = f0.read()
         f.write(text)
     f.close()
