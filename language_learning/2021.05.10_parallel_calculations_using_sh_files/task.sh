@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for job_index in 0 1 2 3 4 5 6
+for ((job_index=0; job_index<7; job_index++))
 do
 
 cp a.py a${job_index}.py

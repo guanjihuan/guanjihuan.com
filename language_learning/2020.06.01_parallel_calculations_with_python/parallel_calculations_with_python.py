@@ -4,8 +4,7 @@ import time
 
 def run_proc(name): # 要执行的代码
     start_time = time.perf_counter()
-    for i in range(300000000):
-        x = 100000^1000000000000
+    time.sleep(2)
     end_time = time.perf_counter()
     print ('Process id running on %s = %s' % (name, os.getpid()), '; running time = %s' % (end_time-start_time))
 
@@ -37,5 +36,4 @@ if __name__ == '__main__':
     p.start()
     p.join()   # join()方法可以等待子进程结束后再继续往下运行
     end_time = time.perf_counter()
-    print('CPU执行时间(s)=', (end_time-start_time))
-
+    print('运行时间(s)=', (end_time-start_time))
