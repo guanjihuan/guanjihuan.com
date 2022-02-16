@@ -1,5 +1,4 @@
 import os
-
 code_path = os.getcwd() # 查看当前代码文件的路径
 data_path = code_path.replace('\\', '/')  # \改为/，防止路径报错
 data_path = code_path.replace('codes', 'data') # 把路径中codes改为data
