@@ -26,7 +26,7 @@ def main():
     for k in k_array:
         vector  = get_occupied_bands_vectors(k, hamiltonian)   
         vector_array.append(vector)
-        # vector_array.append(vector*cmath.exp(1j*np.random.uniform(0, pi)))
+        # vector_array.append(vector*cmath.exp(1j*np.random.uniform(0, pi))) # 随机相位测试
 
     # 波函数固定一个规范
     vector_sum = 0
@@ -38,12 +38,7 @@ def main():
 
     # # 波函数固定一个规范
     # import guan
-    # vector_sum = 0
-    # for i0 in range(Num_k):
-    #     vector_sum += np.abs(vector_array[i0])
-    # index = np.argmax(np.abs(vector_sum))
-    # for i0 in range(Num_k):
-    #     vector_array[i0] = guan.find_vector_with_fixed_gauge_by_making_one_component_real(vector_array[i0], index=index)
+    # vector_array = guan.find_vector_array_with_fixed_gauge_by_making_one_component_real(vector_array, precision=0.005)
 
     # 计算Wilson loop
     W_k = 1
