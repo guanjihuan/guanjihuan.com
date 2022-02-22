@@ -34,9 +34,9 @@ if __name__ == '__main__':
     p2.start()
     p3.start()
     p4.start()
-    p1.join()   # join()方法可以等待子进程结束后再继续往下运行
-    p2.join()   # join()方法可以等待子进程结束后再继续往下运行
-    p3.join()   # join()方法可以等待子进程结束后再继续往下运行
-    p4.join()   # join()方法可以等待子进程结束后再继续往下运行
+    p1.join()  # join()方法可以等待子进程结束后再继续往下运行
+    p2.join()  
+    p3.join()  
+    p4.join()
     end_time = time.perf_counter()
     print('运行时间(s)=', (end_time-start_time))
