@@ -26,14 +26,17 @@ if __name__ == '__main__':
     print('并行程序')
     print('Process id = %s.' % os.getpid())
     start_time = time.perf_counter()
-    p = Process(target=run_proc, args=('job1',))
-    p.start()
-    p = Process(target=run_proc, args=('job2',))
-    p.start()
-    p = Process(target=run_proc, args=('job3',))
-    p.start()
-    p = Process(target=run_proc, args=('job4',))
-    p.start()
-    p.join()   # join()方法可以等待子进程结束后再继续往下运行
+    p1 = Process(target=run_proc, args=('job1',))
+    p2 = Process(target=run_proc, args=('job2',))
+    p3 = Process(target=run_proc, args=('job3',))
+    p4 = Process(target=run_proc, args=('job4',))
+    p1.start()
+    p2.start()
+    p3.start()
+    p4.start()
+    p1.join()   # join()方法可以等待子进程结束后再继续往下运行
+    p2.join()   # join()方法可以等待子进程结束后再继续往下运行
+    p3.join()   # join()方法可以等待子进程结束后再继续往下运行
+    p4.join()   # join()方法可以等待子进程结束后再继续往下运行
     end_time = time.perf_counter()
     print('运行时间(s)=', (end_time-start_time))
