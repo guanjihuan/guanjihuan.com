@@ -6,6 +6,7 @@ The newest version of this code is on the web page: https://www.guanjihuan.com/a
 import numpy as np
 import cmath
 from math import *
+import guan
 
 def hamiltonian(kx, ky):  # BBH model
     # label of atoms in a unit cell
@@ -60,24 +61,7 @@ def main():
                 nu_x[i0] += 1
         nu_x = np.sort(nu_x)
         nu_x_array.append(nu_x.real)
-
-    import guan
     guan.plot(ky_array, nu_x_array, xlabel='ky', ylabel='nu_x', type='-', y_min=0, y_max=1)
-    
-    # # Guan安装方法：https://py.guanjihuan.com/installation
-    # # 不安装Guan开源软件包的，可把上面两行注释，用以下代码代替。
-    # import matplotlib.pyplot as plt
-    # fig, ax = plt.subplots()
-    # plt.subplots_adjust(bottom=0.20, left=0.18)
-    # ax.grid()
-    # ax.plot(ky_array, nu_x_array, '-')
-    # ax.set_xlabel('ky', fontsize=20, fontfamily='Times New Roman') 
-    # ax.set_ylabel('nu_x', fontsize=20, fontfamily='Times New Roman')
-    # ax.tick_params(labelsize=20) 
-    # labels = ax.get_xticklabels() + ax.get_yticklabels()
-    # [label.set_fontname('Times New Roman') for label in labels]
-    # ax.set_ylim(0, 1)
-    # plt.show()
 
 if __name__ == '__main__':
     main()
