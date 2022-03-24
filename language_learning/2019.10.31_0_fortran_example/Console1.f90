@@ -9,7 +9,7 @@ module global ! module是用来封装程序模块的，把相关功能的变量�
    end module global 
       
     
-program main  !主函数用program开始,用end program结束。在Fortran里不区分大小写。用感叹号！来做注释
+program main  !主函数用program开始,用end program结束。在Fortran里不区分大小写。用感叹号!来做注释
 use global
 use f95_precision  !这个还不知道什么时候用上，这里注释掉也可正常运行。
 use blas95  ! 里面包含了矩阵相乘的gemm()等
@@ -21,7 +21,7 @@ integer i,j,info,index1(2) ! 定义整型
 double precision a(2,2),b(2,2),c(2,2),&  ! 比较长的语句可以用&换行。在续行的开始位置可加&号，也可不加。
     x1, x2, result_1, result_2, fun1   !定义双精度浮点数
 complex*16  dd(2,2), eigenvalues(2)  !定义复数
-complex*16, allocatable::  eigenvectors(:,:)  ! 定义动态分配的变量  ！这里的两个冒号::是必须要的。其他的可加可不加。
+complex*16, allocatable::  eigenvectors(:,:)  ! 定义动态分配的变量  ! 这里的两个冒号::是必须要的。其他的可加可不加。
 character(len=15) hello, number  ! 定义字符串,len是规定长度，如果不写，只会给一个字符的空间
 allocate(eigenvectors(2,2))  ! 分配空间
 
