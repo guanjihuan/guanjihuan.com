@@ -61,7 +61,7 @@ def main():
                 nu_x[i0] += 1
         nu_x = np.sort(nu_x)
         nu_x_array.append(nu_x.real)
-    guan.plot(ky_array, nu_x_array, xlabel='ky', ylabel='nu_x', type='-', y_min=0, y_max=1)
+    guan.plot(ky_array, nu_x_array, xlabel='ky', ylabel='nu_x', style='-', y_min=0, y_max=1)
 
 if __name__ == '__main__':
     main()

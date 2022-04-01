@@ -45,7 +45,7 @@ def main():
     B_array = np.linspace(0, 1/(3*np.sqrt(3)/2*a*a), 100)
     eigenvalue_array = guan.calculate_eigenvalue_with_one_parameter(B_array, hamiltonian_function0)
     BS_array = B_array*(3*np.sqrt(3)/2*a*a)
-    guan.plot(BS_array, eigenvalue_array, xlabel='Flux (BS/phi_0)', ylabel='E', title='Ny=%i'%N, filename='a', show=1, save=0, type='k.', y_min=None, y_max=None, markersize=3)
+    guan.plot(BS_array, eigenvalue_array, xlabel='Flux (BS/phi_0)', ylabel='E', title='Ny=%i'%N, filename='a', show=1, save=0, style='k.', y_min=None, y_max=None, markersize=3)
    
 if __name__ == '__main__':
     main()

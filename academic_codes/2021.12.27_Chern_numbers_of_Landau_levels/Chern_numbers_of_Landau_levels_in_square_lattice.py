@@ -30,7 +30,7 @@ def main():
     k_array = np.linspace(-pi, pi, 100)
     H_k = functools.partial(hamiltonian, ky=0, Ny=Ny, B=1/Ny)
     eigenvalue_array = guan.calculate_eigenvalue_with_one_parameter(k_array, H_k)
-    guan.plot(k_array, eigenvalue_array, xlabel='kx', ylabel='E', type='k')
+    guan.plot(k_array, eigenvalue_array, xlabel='kx', ylabel='E', style='k')
 
     H_k = functools.partial(hamiltonian, Ny=Ny, B=1/Ny)
     chern_number = guan.calculate_chern_number_for_square_lattice(H_k, precision=100)

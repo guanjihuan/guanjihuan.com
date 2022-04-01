@@ -81,7 +81,7 @@ def main():
             p_y_for_nu_x += 1
         p_y_for_nu_x_array.append(p_y_for_nu_x.real) 
         print('p_y_for_nu_x=', p_y_for_nu_x)
-    guan.plot(kx2_array, p_y_for_nu_x_array, xlabel='kx', ylabel='p_y_for_nu_x', type='-o', y_min=0, y_max=1)
+    guan.plot(kx2_array, p_y_for_nu_x_array, xlabel='kx', ylabel='p_y_for_nu_x', style='-o', y_min=0, y_max=1)
 
     # Part II: calculate p_x_for_nu_y
     p_x_for_nu_y_array = []
@@ -117,7 +117,7 @@ def main():
         p_x_for_nu_y_array.append(p_x_for_nu_y.real)
         print('p_x_for_nu_y=', p_x_for_nu_y)
     # print(sum(p_x_for_nu_y_array)/len(p_x_for_nu_y_array))
-    guan.plot(ky2_array, p_x_for_nu_y_array, xlabel='ky', ylabel='p_x_for_nu_y', type='-o', y_min=0, y_max=1)
+    guan.plot(ky2_array, p_x_for_nu_y_array, xlabel='ky', ylabel='p_x_for_nu_y', style='-o', y_min=0, y_max=1)
 
 def get_nu_x_vector(kx_array, ky):
     Num_kx = len(kx_array)
