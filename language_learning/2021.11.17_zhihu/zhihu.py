@@ -50,12 +50,12 @@ for href in match_href_new:
         f.write('<p><a target=\"_blank\" href=\"')
         f.write(str(href))   # 文章链接
         f.write('\">')
-        f.write(str(title.get_text()))
-        f.write('</a>&nbsp;&nbsp;') 
+        f.write(str(title.get_text()[:-5]))
+        f.write('&nbsp;&nbsp;') 
         author = soup.find("span", {"class": "UserLink AuthorInfo-name"})
         f.write(str(author.get_text()+'&nbsp;&nbsp;'))
         post_time = soup.find("div", {"class" : "ContentItem-time"})
-        f.write(str(post_time.get_text())+'</p>')
+        f.write(str(post_time.get_text()[4:-6])+'</a></p>')
     except:
         pass
 f.close()
