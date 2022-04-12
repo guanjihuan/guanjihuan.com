@@ -14,7 +14,7 @@ day = datetime.datetime.now().day
 
 # 获取链接
 match_href = []
-# 由于没有模拟登录知乎，因此只能爬取到最新的两篇专栏博文
+# 由于没有模拟登录知乎，因此只能爬取到最新的两篇文章
 authors = ["https://www.zhihu.com/people/g3508/posts", # Guan
 ]
 for i0 in range(len(authors)):
