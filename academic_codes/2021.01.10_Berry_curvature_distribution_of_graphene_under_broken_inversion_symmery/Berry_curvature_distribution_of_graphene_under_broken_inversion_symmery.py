@@ -10,7 +10,7 @@ import cmath
 import time
 
 
-def hamiltonian(k1, k2, t1=2.82*sqrt(3)/2, a=1/sqrt(3)):  # 石墨烯哈密顿量(a为原子间距，不赋值的话默认为1/sqrt(3)）
+def hamiltonian(k1, k2, t1=2.82*sqrt(3)/2, a=1/sqrt(3)):  # 石墨烯哈密顿量（a为原子间距，不赋值的话默认为1/sqrt(3)）
     h = np.zeros((2, 2))*(1+0j)
     h[0, 0] = 0.28/2
     h[1, 1] = -0.28/2
