@@ -24,7 +24,7 @@ for i0 in range(len(authors)):
     all_a_tag = soup.find_all('a', href=True)  # 获取超链接标签
     for a_tag in all_a_tag:
         href = a_tag['href']  # 超链接字符串
-        if re.search('//zhuanlan.zhihu.com/p/', href): # 文章的链接
+        if re.search('//zhuanlan.zhihu.com/p/', href) and not re.search('edit', href): # 文章的链接
             if re.search('https:', href)==None:  # 如果链接不是完整的，那么补充完整
                 href = 'https:'+ href
             if href not in match_href:
