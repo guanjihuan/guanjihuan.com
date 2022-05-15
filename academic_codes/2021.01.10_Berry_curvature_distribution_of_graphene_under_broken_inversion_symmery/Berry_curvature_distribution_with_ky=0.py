@@ -10,14 +10,13 @@ import cmath
 import time
 
 
-def hamiltonian(k1, k2, t1=2.82*sqrt(3)/2, a=1/sqrt(3)):  # 石墨烯哈密顿量（a为原子间距，不赋值的话默认为1/sqrt(3)）
+def hamiltonian(k1, k2, t1=2.82, a=1/sqrt(3)):  # 石墨烯哈密顿量（a为原子间距，不赋值的话默认为1/sqrt(3)）
     h = np.zeros((2, 2))*(1+0j)
     h[0, 0] = 0.28/2
     h[1, 1] = -0.28/2
     h[1, 0] = t1*(cmath.exp(1j*k2*a)+cmath.exp(1j*sqrt(3)/2*k1*a-1j/2*k2*a)+cmath.exp(-1j*sqrt(3)/2*k1*a-1j/2*k2*a))
     h[0, 1] = h[1, 0].conj()
     return h
-
 
 def main():
     start_time = time.time()
@@ -71,7 +70,6 @@ def main():
     end_time = time.time()
     print('运行时间(min)=', (end_time-start_time)/60)
 
-
 def find_vector_with_the_same_gauge(vector_1, vector_0):
     # 寻找近似的同一的规范
     phase_1_pre = 0
@@ -107,8 +105,6 @@ def find_vector_with_the_same_gauge(vector_1, vector_0):
     vector_1 = vector_1*cmath.exp(1j*phase)
     # print('二分查找找到的规范=', phase)   
     return vector_1
-
-
 
 if __name__ == '__main__':
     main()

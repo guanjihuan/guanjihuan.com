@@ -10,7 +10,7 @@ import cmath
 import time
 
 
-def hamiltonian(k1, k2, t1=2.82*sqrt(3)/2, a=1/sqrt(3)):  # 石墨烯哈密顿量（a为原子间距，不赋值的话默认为1/sqrt(3)）
+def hamiltonian(k1, k2, t1=2.82, a=1/sqrt(3)):  # 石墨烯哈密顿量（a为原子间距，不赋值的话默认为1/sqrt(3)）
     h = np.zeros((2, 2))*(1+0j)
     h[0, 0] = 0.28/2
     h[1, 1] = -0.28/2
@@ -67,11 +67,18 @@ def main():
                 F_all[i0, j0] = np.real(F)
                 i0 += 1
             j0 += 1
-        plot_matrix(kx_array/pi, ky_array/pi, F_all, band)
-        write_matrix(kx_array/pi, ky_array/pi, F_all, band)
+
+        if band==0:
+            plot_3d_surface(kx_array/pi, ky_array/pi, F_all, xlabel='kx', ylabel='ky', zlabel='Berry curvature', title='Valence Band', rcount=300, ccount=300)
+        else:
+            plot_3d_surface(kx_array/pi, ky_array/pi, F_all, xlabel='kx', ylabel='ky', zlabel='Berry curvature', title='Conductance Band', rcount=300, ccount=300)
+        # import guan
+        # if band==0:
+        #     guan.plot_3d_surface(kx_array/pi, ky_array/pi, F_all, xlabel='kx', ylabel='ky', zlabel='Berry curvature', title='Valence Band', rcount=300, ccount=300)
+        # else:
+        #     guan.plot_3d_surface(kx_array/pi, ky_array/pi, F_all, xlabel='kx', ylabel='ky', zlabel='Berry curvature', title='Conductance Band', rcount=300, ccount=300)
     end_time = time.time()
     print('运行时间(min)=', (end_time-start_time)/60)
-
 
 def find_vector_with_the_same_gauge(vector_1, vector_0):
     # 寻找近似的同一的规范
@@ -109,43 +116,44 @@ def find_vector_with_the_same_gauge(vector_1, vector_0):
     # print('二分查找找到的规范=', phase)   
     return vector_1
 
-
-def plot_matrix(k1, k2, matrix, band):
+def plot_3d_surface(x_array, y_array, matrix, xlabel='x', ylabel='y', zlabel='z', title='', fontsize=20, labelsize=15, show=1, save=0, filename='a', format='jpg', dpi=300, z_min=None, z_max=None, rcount=100, ccount=100): 
     import matplotlib.pyplot as plt
-    from mpl_toolkits.mplot3d import Axes3D
     from matplotlib import cm
-    from matplotlib.ticker import LinearLocator, FormatStrFormatter
-    fig = plt.figure()
-    ax = fig.gca(projection='3d')
-    k1, k2 = np.meshgrid(k1, k2)
-    ax.plot_surface(k1, k2, matrix, cmap="rainbow", linewidth=0, antialiased=False) 
-    plt.xlabel('kx')
-    plt.ylabel('ky') 
-    ax.set_zlabel('Berry curvature')  
-    if band==0:
-        plt.title('Valence Band')
-    else:
-        plt.title('Conductance Band')
-    plt.show()
-
-
-def write_matrix(k1, k2, matrix, band):
-    import os
-    os.chdir('D:/data')  # 设置路径
-    with open('band='+str(band)+'.txt', 'w') as f:
-        # np.set_printoptions(suppress=True)  # 取消输出科学记数法
-        f.write('0           ')
-        for k10 in k1:
-            f.write(str(k10)+'   ')
-        f.write('\n')
-        i0 = 0
-        for k20 in k2:
-            f.write(str(k20))
-            for j0 in range(k1.shape[0]):
-                f.write('  '+str(matrix[i0, j0])+'   ')
-            f.write('\n')
-            i0 += 1   
-
+    from matplotlib.ticker import LinearLocator
+    matrix = np.array(matrix)
+    fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
+    plt.subplots_adjust(bottom=0.1, right=0.65) 
+    x_array, y_array = np.meshgrid(x_array, y_array)
+    if len(matrix.shape) == 2:
+        surf = ax.plot_surface(x_array, y_array, matrix, rcount=rcount, ccount=ccount, cmap=cm.coolwarm, linewidth=0, antialiased=False) 
+    elif len(matrix.shape) == 3:
+        for i0 in range(matrix.shape[2]):
+            surf = ax.plot_surface(x_array, y_array, matrix[:,:,i0], rcount=rcount, ccount=ccount, cmap=cm.coolwarm, linewidth=0, antialiased=False) 
+    ax.set_title(title, fontsize=fontsize, fontfamily='Times New Roman')
+    ax.set_xlabel(xlabel, fontsize=fontsize, fontfamily='Times New Roman') 
+    ax.set_ylabel(ylabel, fontsize=fontsize, fontfamily='Times New Roman') 
+    ax.set_zlabel(zlabel, fontsize=fontsize, fontfamily='Times New Roman') 
+    ax.zaxis.set_major_locator(LinearLocator(5)) 
+    ax.zaxis.set_major_formatter('{x:.2f}')  
+    if z_min!=None or z_max!=None:
+        if z_min==None:
+            z_min=matrix.min()
+        if z_max==None:
+            z_max=matrix.max()
+        ax.set_zlim(z_min, z_max)
+    ax.tick_params(labelsize=labelsize) 
+    labels = ax.get_xticklabels() + ax.get_yticklabels() + ax.get_zticklabels()
+    [label.set_fontname('Times New Roman') for label in labels] 
+    cax = plt.axes([0.8, 0.1, 0.05, 0.8]) 
+    cbar = fig.colorbar(surf, cax=cax)  
+    cbar.ax.tick_params(labelsize=labelsize)
+    for l in cbar.ax.yaxis.get_ticklabels():
+        l.set_family('Times New Roman')
+    if save == 1:
+        plt.savefig(filename+'.'+format, dpi=dpi) 
+    if show == 1:
+        plt.show()
+    plt.close('all')
 
 if __name__ == '__main__':
     main()
