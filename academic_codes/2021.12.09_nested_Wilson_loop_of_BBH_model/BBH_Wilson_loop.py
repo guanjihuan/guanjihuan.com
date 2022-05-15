@@ -6,7 +6,6 @@ The newest version of this code is on the web page: https://www.guanjihuan.com/a
 import numpy as np
 import cmath
 from math import *
-import guan
 
 def hamiltonian(kx, ky):  # BBH model
     # label of atoms in a unit cell
@@ -61,7 +60,33 @@ def main():
                 nu_x[i0] += 1
         nu_x = np.sort(nu_x)
         nu_x_array.append(nu_x.real)
-    guan.plot(ky_array, nu_x_array, xlabel='ky', ylabel='nu_x', style='-', y_min=0, y_max=1)
+    plot(ky_array, nu_x_array, xlabel='ky', ylabel='nu_x', style='-', y_min=0, y_max=1)
+    # import guan
+    # guan.plot(ky_array, nu_x_array, xlabel='ky', ylabel='nu_x', style='-', y_min=0, y_max=1)
+
+def plot(x_array, y_array, xlabel='x', ylabel='y', title='', fontsize=20, labelsize=20, show=1, save=0, filename='a', format='jpg', dpi=300, style='', y_min=None, y_max=None, linewidth=None, markersize=None, adjust_bottom=0.2, adjust_left=0.2): 
+    import matplotlib.pyplot as plt
+    fig, ax = plt.subplots()
+    plt.subplots_adjust(bottom=adjust_bottom, left=adjust_left) 
+    ax.plot(x_array, y_array, style, linewidth=linewidth, markersize=markersize)
+    ax.grid()
+    ax.set_title(title, fontsize=fontsize, fontfamily='Times New Roman')
+    ax.set_xlabel(xlabel, fontsize=fontsize, fontfamily='Times New Roman') 
+    ax.set_ylabel(ylabel, fontsize=fontsize, fontfamily='Times New Roman') 
+    if y_min!=None or y_max!=None:
+        if y_min==None:
+            y_min=min(y_array)
+        if y_max==None:
+            y_max=max(y_array)
+        ax.set_ylim(y_min, y_max)
+    ax.tick_params(labelsize=labelsize) 
+    labels = ax.get_xticklabels() + ax.get_yticklabels()
+    [label.set_fontname('Times New Roman') for label in labels]
+    if save == 1:
+        plt.savefig(filename+'.'+format, dpi=dpi) 
+    if show == 1:
+        plt.show()
+    plt.close('all')
 
 if __name__ == '__main__':
     main()

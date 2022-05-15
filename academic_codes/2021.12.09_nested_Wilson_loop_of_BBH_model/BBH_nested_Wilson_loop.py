@@ -6,7 +6,6 @@ The newest version of this code is on the web page: https://www.guanjihuan.com/a
 import numpy as np
 import cmath
 from math import *
-import guan
 
 def hamiltonian(kx, ky):  # BBH model
     # label of atoms in a unit cell
@@ -81,7 +80,9 @@ def main():
             p_y_for_nu_x += 1
         p_y_for_nu_x_array.append(p_y_for_nu_x.real) 
         print('p_y_for_nu_x=', p_y_for_nu_x)
-    guan.plot(kx2_array, p_y_for_nu_x_array, xlabel='kx', ylabel='p_y_for_nu_x', style='-o', y_min=0, y_max=1)
+    plot(kx2_array, p_y_for_nu_x_array, xlabel='kx', ylabel='p_y_for_nu_x', style='-o', y_min=0, y_max=1)
+    # import guan
+    # guan.plot(kx2_array, p_y_for_nu_x_array, xlabel='kx', ylabel='p_y_for_nu_x', style='-o', y_min=0, y_max=1)
 
     # Part II: calculate p_x_for_nu_y
     p_x_for_nu_y_array = []
@@ -117,7 +118,9 @@ def main():
         p_x_for_nu_y_array.append(p_x_for_nu_y.real)
         print('p_x_for_nu_y=', p_x_for_nu_y)
     # print(sum(p_x_for_nu_y_array)/len(p_x_for_nu_y_array))
-    guan.plot(ky2_array, p_x_for_nu_y_array, xlabel='ky', ylabel='p_x_for_nu_y', style='-o', y_min=0, y_max=1)
+    plot(ky2_array, p_x_for_nu_y_array, xlabel='ky', ylabel='p_x_for_nu_y', style='-o', y_min=0, y_max=1)
+    # import guan
+    # guan.plot(ky2_array, p_x_for_nu_y_array, xlabel='ky', ylabel='p_x_for_nu_y', style='-o', y_min=0, y_max=1)
 
 def get_nu_x_vector(kx_array, ky):
     Num_kx = len(kx_array)
@@ -170,6 +173,30 @@ def get_nu_y_vector(kx, ky_array):
     nu_y_vector_1 = eigenvector[:, np.argsort(np.real(nu_y))[0]]
     nu_y_vector_2 = eigenvector[:, np.argsort(np.real(nu_y))[1]]
     return nu_y_vector_1, nu_y_vector_2
+
+def plot(x_array, y_array, xlabel='x', ylabel='y', title='', fontsize=20, labelsize=20, show=1, save=0, filename='a', format='jpg', dpi=300, style='', y_min=None, y_max=None, linewidth=None, markersize=None, adjust_bottom=0.2, adjust_left=0.2): 
+    import matplotlib.pyplot as plt
+    fig, ax = plt.subplots()
+    plt.subplots_adjust(bottom=adjust_bottom, left=adjust_left) 
+    ax.plot(x_array, y_array, style, linewidth=linewidth, markersize=markersize)
+    ax.grid()
+    ax.set_title(title, fontsize=fontsize, fontfamily='Times New Roman')
+    ax.set_xlabel(xlabel, fontsize=fontsize, fontfamily='Times New Roman') 
+    ax.set_ylabel(ylabel, fontsize=fontsize, fontfamily='Times New Roman') 
+    if y_min!=None or y_max!=None:
+        if y_min==None:
+            y_min=min(y_array)
+        if y_max==None:
+            y_max=max(y_array)
+        ax.set_ylim(y_min, y_max)
+    ax.tick_params(labelsize=labelsize) 
+    labels = ax.get_xticklabels() + ax.get_yticklabels()
+    [label.set_fontname('Times New Roman') for label in labels]
+    if save == 1:
+        plt.savefig(filename+'.'+format, dpi=dpi) 
+    if show == 1:
+        plt.show()
+    plt.close('all')
 
 if __name__ == '__main__':
     main()
