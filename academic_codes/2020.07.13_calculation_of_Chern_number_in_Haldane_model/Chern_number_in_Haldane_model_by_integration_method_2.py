@@ -11,11 +11,11 @@ import time
 import functools  # 使用偏函数functools.partial()
 
 
-def hamiltonian(k1, k2, M, t1, t2, phi, a=1/sqrt(3)):  # Haldane哈密顿量(a为原子间距，不赋值的话默认为1/sqrt(3)）
+def hamiltonian(k1, k2, M, t1, t2, phi, a=1/sqrt(3)):  # Haldane哈密顿量（a为原子间距，不赋值的话默认为1/sqrt(3)）
     # 初始化为零矩阵
-    h0 = np.zeros((2, 2))*(1+0j)   # 乘(1+0j)是为了把h0转为复数
-    h1 = np.zeros((2, 2))*(1+0j)
-    h2 = np.zeros((2, 2))*(1+0j)
+    h0 = np.zeros((2, 2), dtype=complex)
+    h1 = np.zeros((2, 2), dtype=complex)
+    h2 = np.zeros((2, 2), dtype=complex)
 
     # 质量项(mass term), 用于打开带隙
     h0[0, 0] = M
@@ -24,6 +24,10 @@ def hamiltonian(k1, k2, M, t1, t2, phi, a=1/sqrt(3)):  # Haldane哈密顿量(a�
     # 最近邻项
     h1[1, 0] = t1*(cmath.exp(1j*k2*a)+cmath.exp(1j*sqrt(3)/2*k1*a-1j/2*k2*a)+cmath.exp(-1j*sqrt(3)/2*k1*a-1j/2*k2*a))
     h1[0, 1] = h1[1, 0].conj()
+
+    # # 最近邻项也可写成这种形式
+    # h1[1, 0] = t1+t1*cmath.exp(1j*sqrt(3)/2*k1*a-1j*3/2*k2*a)+t1*cmath.exp(-1j*sqrt(3)/2*k1*a-1j*3/2*k2*a)
+    # h1[0, 1] = h1[1, 0].conj()
 
     #次近邻项 # 对应陈数为-1
     h2[0, 0] = t2*cmath.exp(-1j*phi)*(cmath.exp(1j*sqrt(3)*k1*a)+cmath.exp(-1j*sqrt(3)/2*k1*a+1j*3/2*k2*a)+cmath.exp(-1j*sqrt(3)/2*k1*a-1j*3/2*k2*a))

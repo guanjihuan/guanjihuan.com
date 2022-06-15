@@ -25,7 +25,7 @@ def hamiltonian(k1, k2, M, t1, t2, phi, a=1/sqrt(3)):  # Haldane哈密顿量(a�
     h1[0, 1] = h1[1, 0].conj()
 
     # 最近邻项也可写成这种形式
-    # h1[1, 0] = t1+t1*cmath.exp(1j*sqrt(3)/2*k1*a-1j*3/2*k2*a)-t1*cmath.exp(-1j*sqrt(3)/2*k1*a-1j*3/2*k2*a)
+    # h1[1, 0] = t1+t1*cmath.exp(1j*sqrt(3)/2*k1*a-1j*3/2*k2*a)+t1*cmath.exp(-1j*sqrt(3)/2*k1*a-1j*3/2*k2*a)
     # h1[0, 1] = h1[1, 0].conj()
 
     # 次近邻项
