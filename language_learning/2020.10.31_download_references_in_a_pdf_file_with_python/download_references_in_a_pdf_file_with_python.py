@@ -55,7 +55,8 @@ def download(links):
         print('\n响应结果是：', r)
         print('访问的地址是：', r.url)
         soup = BeautifulSoup(r.text, features='lxml')
-        pdf_URL = soup.iframe['src']
+        pdf_URL = soup.embed['src']
+        # pdf_URL = soup.iframe['src'] # This is a code line of history version which fails to get pdf URL.
         if re.search(re.compile('^https:'), pdf_URL):
             pass
         else:
