@@ -34,7 +34,7 @@ def rotation_of_degenerate_vectors(vector1, vector2, index1=None, index2=None, p
                 break
     return vector1, vector2
 
-def hamiltonian_of_BBH_model(kx, ky, gamma_x=0.5, gamma_y=0.5, lambda_x=1, lambda_y=1):
+def hamiltonian_of_bbh_model(kx, ky, gamma_x=0.5, gamma_y=0.5, lambda_x=1, lambda_y=1):
     # label of atoms in a unit cell
     # (2) —— (0)
     #  |      |
@@ -52,14 +52,14 @@ def hamiltonian_of_BBH_model(kx, ky, gamma_x=0.5, gamma_y=0.5, lambda_x=1, lambd
 
 # For kx=0
 print('\nFor kx=0:\n')
-eigenvalue, eigenvector = np.linalg.eigh(hamiltonian_of_BBH_model(kx=0, ky=0))
+eigenvalue, eigenvector = np.linalg.eigh(hamiltonian_of_bbh_model(kx=0, ky=0))
 print(eigenvalue, '\n')
 print(eigenvector[:, 0])
 print(eigenvector[:, 1], '\n')
 
 # For kx=0.005
 print('\nFor kx=0.005:\n')
-eigenvalue, eigenvector = np.linalg.eigh(hamiltonian_of_BBH_model(kx=0.005, ky=0))
+eigenvalue, eigenvector = np.linalg.eigh(hamiltonian_of_bbh_model(kx=0.005, ky=0))
 print(eigenvalue, '\n')
 print(eigenvector[:, 0])
 print(eigenvector[:, 1], '\n\n')
@@ -75,4 +75,4 @@ print(vector2, '\n')
 # # 安装命令：pip install --upgrade guan。
 # import guan
 # vector1, vector2 = guan.rotation_of_degenerate_vectors(vector1, vector2, index1=None, index2=None, precision=0.01, criterion=0.01, show_theta=0)
-# hamiltonian = guan.hamiltonian_of_BBH_model(kx, ky, gamma_x=0.5, gamma_y=0.5, lambda_x=1, lambda_y=1)
+# hamiltonian = guan.hamiltonian_of_bbh_model(kx, ky, gamma_x=0.5, gamma_y=0.5, lambda_x=1, lambda_y=1)
