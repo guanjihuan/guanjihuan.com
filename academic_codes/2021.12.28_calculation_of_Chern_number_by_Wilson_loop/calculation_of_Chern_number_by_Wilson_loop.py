@@ -32,7 +32,7 @@ def main():
         for ky in np.arange(-pi, pi, delta):
             vector_array = []
             # line_1
-            for i2 in range(n2+1):
+            for i2 in range(n2):
                 H_delta = hamiltonian(kx+delta/n2*i2, ky) 
                 eigenvalue, eigenvector = np.linalg.eig(H_delta)
                 vector_delta = eigenvector[:, np.argsort(np.real(eigenvalue))[0]]
@@ -40,19 +40,19 @@ def main():
                 vector_array.append(vector_delta)
             # line_2
             for i2 in range(n2):
-                H_delta = hamiltonian(kx+delta, ky+delta/n2*(i2+1))  
+                H_delta = hamiltonian(kx+delta, ky+delta/n2*i2)  
                 eigenvalue, eigenvector = np.linalg.eig(H_delta)
                 vector_delta = eigenvector[:, np.argsort(np.real(eigenvalue))[0]]
                 vector_array.append(vector_delta)
             # line_3
             for i2 in range(n2):
-                H_delta = hamiltonian(kx+delta-delta/n2*(i2+1), ky+delta)  
+                H_delta = hamiltonian(kx+delta-delta/n2*i2, ky+delta)  
                 eigenvalue, eigenvector = np.linalg.eig(H_delta)
                 vector_delta = eigenvector[:, np.argsort(np.real(eigenvalue))[0]]
                 vector_array.append(vector_delta)
             # line_4
-            for i2 in range(n2-1):
-                H_delta = hamiltonian(kx, ky+delta-delta/n2*(i2+1))  
+            for i2 in range(n2):
+                H_delta = hamiltonian(kx, ky+delta-delta/n2*i2)  
                 eigenvalue, eigenvector = np.linalg.eig(H_delta)
                 vector_delta = eigenvector[:, np.argsort(np.real(eigenvalue))[0]]
                 vector_array.append(vector_delta)
