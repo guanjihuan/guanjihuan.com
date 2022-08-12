@@ -77,13 +77,13 @@ def calculate_chern_number_for_square_lattice_with_Wilson_loop_for_degenerate_ca
                 vector_delta = eigenvector[:, np.argsort(np.real(eigenvalue))]
                 vector_array.append(vector_delta)           
             Wilson_loop = 1
-            dim = len(num_of_bands)
+            dim = len(index_of_bands)
             for i0 in range(len(vector_array)-1):
                 dot_matrix = np.zeros((dim , dim), dtype=complex)
                 i01 = 0
-                for dim1 in num_of_bands:
+                for dim1 in index_of_bands:
                     i02 = 0
-                    for dim2 in num_of_bands:
+                    for dim2 in index_of_bands:
                         dot_matrix[i01, i02] = np.dot(vector_array[i0][:, dim1].transpose().conj(), vector_array[i0+1][:, dim2])
                         i02 += 1
                     i01 += 1
@@ -91,9 +91,9 @@ def calculate_chern_number_for_square_lattice_with_Wilson_loop_for_degenerate_ca
                 Wilson_loop = Wilson_loop*det_value
             dot_matrix_plus = np.zeros((dim , dim), dtype=complex)
             i01 = 0
-            for dim1 in num_of_bands:
+            for dim1 in index_of_bands:
                 i02 = 0
-                for dim2 in num_of_bands:
+                for dim2 in index_of_bands:
                     dot_matrix_plus[i01, i02] = np.dot(vector_array[len(vector_array)-1][:, dim1].transpose().conj(), vector_array[0][:, dim2])
                     i02 += 1
                 i01 += 1
