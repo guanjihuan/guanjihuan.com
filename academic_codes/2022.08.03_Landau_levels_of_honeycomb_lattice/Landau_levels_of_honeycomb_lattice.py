@@ -8,6 +8,7 @@ from math import *
 import cmath  
 import functools 
 
+
 def hamiltonian(kx, ky, B, N, M, t1, a):  # 在磁场下的二维石墨烯，取磁元胞
     h00 = np.zeros((4*N, 4*N), dtype=complex)
     h01 = np.zeros((4*N, 4*N), dtype=complex)
@@ -38,19 +39,39 @@ def hamiltonian(kx, ky, B, N, M, t1, a):  # 在磁场下的二维石墨烯，取
     matrix = h00 + h01*cmath.exp(1j*kx) + h01.transpose().conj()*cmath.exp(-1j*kx)
     return matrix
 
-def main():
-    N = 50
-    a = 1
 
+def main():
+    N = 300
+    a = 1
     hamiltonian_function = functools.partial(hamiltonian, ky=0, B=1/(3*np.sqrt(3)/2*a*a*N), N=N, M=0, t1=1, a=a)
-    k_array = np.linspace(-pi, pi, 100)
-    
+
+
+    # 查看能带图
+    k_array = np.linspace(-pi, pi, 10)
     eigenvalue_array = calculate_eigenvalue_with_one_parameter(k_array, hamiltonian_function)
-    plot(k_array, eigenvalue_array, xlabel='kx', ylabel='E', title='ky=0    N=%i    Φ/Φ_0=1/(3*np.sqrt(3)/2*a*a*N)'%N, style='k-')
+    plot(k_array, eigenvalue_array, xlabel='kx', ylabel='E', title='ky=0    N=%i    Φ/Φ_0=1/(3*np.sqrt(3)/2*a*a*N)'%N, style='k-', y_max=1, y_min=-1)
 
     # import guan
+    # k_array = np.linspace(-pi, pi, 10)
     # eigenvalue_array = guan.calculate_eigenvalue_with_one_parameter(k_array, hamiltonian_function)
-    # guan.plot(k_array, eigenvalue_array, xlabel='kx', ylabel='E', title='ky=0    N=%i    Φ/Φ_0=1/(3*np.sqrt(3)/2*a*a*N)'%N, style='k-')
+    # guan.plot(k_array, eigenvalue_array, xlabel='kx', ylabel='E', title='ky=0    N=%i    Φ/Φ_0=1/(3*np.sqrt(3)/2*a*a*N)'%N, style='k-', y_max=1, y_min=-1)
+
+
+    # 查看关系
+    eigenvalue, eigenvector = np.linalg.eigh(hamiltonian_function(0))
+    print('本征值个数：', eigenvalue.shape)
+    new_eigenvalue = []
+    for eigen in eigenvalue:
+        if -0.1<eigen<0.8:  # 找某个范围内的本征值
+            if new_eigenvalue == []:
+                new_eigenvalue.append(eigen)
+            else:
+                if np.abs(eigen-new_eigenvalue[-1])>0.001:  # 去除简并
+                    new_eigenvalue.append(eigen)
+    print('大于等于0的本征值个数：', len(new_eigenvalue), '\n')
+    print(new_eigenvalue)
+    plot(range(len(new_eigenvalue)), np.square(np.real(new_eigenvalue)), xlabel='n', ylabel='E^2', style='o-')
+
 
 def calculate_eigenvalue_with_one_parameter(x_array, hamiltonian_function, print_show=0):
     dim_x = np.array(x_array).shape[0]
@@ -72,6 +93,7 @@ def calculate_eigenvalue_with_one_parameter(x_array, hamiltonian_function, print
             eigenvalue_array[i0, :] = eigenvalue
             i0 += 1
     return eigenvalue_array
+
 
 def plot(x_array, y_array, xlabel='x', ylabel='y', title='', fontsize=20, labelsize=20, show=1, save=0, filename='a', format='jpg', dpi=300, style='', y_min=None, y_max=None, linewidth=None, markersize=None, adjust_bottom=0.2, adjust_left=0.2): 
     import matplotlib.pyplot as plt
@@ -96,6 +118,7 @@ def plot(x_array, y_array, xlabel='x', ylabel='y', title='', fontsize=20, labels
     if show == 1:
         plt.show()
     plt.close('all')
+
 
 if __name__ == '__main__':
     main()
