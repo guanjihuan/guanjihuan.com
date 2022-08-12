@@ -33,7 +33,7 @@ def main():
     guan.plot(k_array, eigenvalue_array, xlabel='kx', ylabel='E', style='k')
 
     H_k = functools.partial(hamiltonian, Ny=Ny, B=1/Ny)
-    chern_number = guan.calculate_chern_number_for_square_lattice(H_k, precision=100)
+    chern_number = guan.calculate_chern_number_for_square_lattice_with_efficient_method(H_k, precision=100)
     print(chern_number)
     print(sum(chern_number))
 

@@ -13,7 +13,7 @@ def main():
     for kz in kz_array:
         print(kz)
         hamiltonian_function = functools.partial(hamiltonian, kz=kz)
-        chern_number = guan.calculate_chern_number_for_square_lattice(hamiltonian_function)
+        chern_number = guan.calculate_chern_number_for_square_lattice_with_efficient_method(hamiltonian_function)
         chern_number_array.append(chern_number)
     guan.plot(kz_array, chern_number_array, style='-o')
 
