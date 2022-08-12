@@ -27,23 +27,23 @@ def main():
     Ny = 20
 
     H_k = functools.partial(hamiltonian, Ny=Ny, B=1/Ny)
-    chern_number = calculate_chern_number_for_square_lattice_with_Wilson_loop_for_degenerate_case(H_k, num_of_bands=range(int(Ny/2)-1), precision_of_Wilson_loop=5)
+    chern_number = calculate_chern_number_for_square_lattice_with_Wilson_loop_for_degenerate_case(H_k, index_of_bands=range(int(Ny/2)-1), precision_of_Wilson_loop=5)
     print('价带：', chern_number)
     print()
 
-    chern_number = calculate_chern_number_for_square_lattice_with_Wilson_loop_for_degenerate_case(H_k, num_of_bands=range(int(Ny/2)+2), precision_of_Wilson_loop=5)
+    chern_number = calculate_chern_number_for_square_lattice_with_Wilson_loop_for_degenerate_case(H_k, index_of_bands=range(int(Ny/2)+2), precision_of_Wilson_loop=5)
     print('价带（包含两个交叉能带）：', chern_number)
     print()
 
-    chern_number = calculate_chern_number_for_square_lattice_with_Wilson_loop_for_degenerate_case(H_k, num_of_bands=range(Ny), precision_of_Wilson_loop=5)
+    chern_number = calculate_chern_number_for_square_lattice_with_Wilson_loop_for_degenerate_case(H_k, index_of_bands=range(Ny), precision_of_Wilson_loop=5)
     print('所有能带：', chern_number)
 
     # # 函数可通过Guan软件包调用。安装方法：pip install --upgrade guan
     # import guan
-    # chern_number = guan.calculate_chern_number_for_square_lattice_with_Wilson_loop_for_degenerate_case(hamiltonian_function, num_of_bands=[0, 1], precision_of_plaquettes=20, precision_of_Wilson_loop=5, print_show=0)
+    # chern_number = guan.calculate_chern_number_for_square_lattice_with_Wilson_loop_for_degenerate_case(hamiltonian_function, index_of_bands=[0, 1], precision_of_plaquettes=20, precision_of_Wilson_loop=5, print_show=0)
 
 
-def calculate_chern_number_for_square_lattice_with_Wilson_loop_for_degenerate_case(hamiltonian_function, num_of_bands=[0, 1], precision_of_plaquettes=20, precision_of_Wilson_loop=5, print_show=0):
+def calculate_chern_number_for_square_lattice_with_Wilson_loop_for_degenerate_case(hamiltonian_function, index_of_bands=[0, 1], precision_of_plaquettes=20, precision_of_Wilson_loop=5, print_show=0):
     import math
     delta = 2*math.pi/precision_of_plaquettes
     chern_number = 0
