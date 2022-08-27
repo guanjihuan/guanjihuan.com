@@ -28,6 +28,7 @@ def main():
     Ny = 20
 
     H_k = functools.partial(hamiltonian, Ny=Ny, B=1/Ny)
+    
     chern_number = calculate_chern_number_for_square_lattice_with_wilson_loop_for_degenerate_case(H_k, index_of_bands=range(int(Ny/2)-1), precision_of_wilson_loop=5)
     print('价带：', chern_number)
     print()
