@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-os.chdir('D:/data')  # 设置路径
+# os.chdir('E:/data')  # 设置路径
 
 # 万有引力常数
 G = 1
