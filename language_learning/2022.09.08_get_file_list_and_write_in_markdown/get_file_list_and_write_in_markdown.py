@@ -43,10 +43,11 @@ def write_file_list_in_markdown(directory, filename='a', reverse_positive_or_neg
             for filename2 in filenames2[::reverse_positive_or_negative]:
                 filename2_with_path = os.path.join(directory, filename1, filename2) 
                 if os.path.isfile(filename2_with_path):  # 文件
-                    if hide_file_type == None:
-                        f.write('+ '+str(filename2)+'\n')
-                    else:
-                        f.write('+ '+str(os.path.splitext(filename2)[0])+'\n')
+                    if os.path.splitext(filename2)[1] not in banned_type:
+                        if hide_file_type == None:
+                            f.write('+ '+str(filename2)+'\n')
+                        else:
+                            f.write('+ '+str(os.path.splitext(filename2)[0])+'\n')
                 else:    # 文件夹
                     i0 += 1
                     if starting_from_h1 == None:
@@ -61,10 +62,11 @@ def write_file_list_in_markdown(directory, filename='a', reverse_positive_or_neg
                     for filename3 in filenames3[::reverse_positive_or_negative]:
                         filename3_with_path = os.path.join(directory, filename1, filename2, filename3) 
                         if os.path.isfile(filename3_with_path):    # 文件
-                            if hide_file_type == None:
-                                f.write('+ '+str(filename3)+'\n')
-                            else:
-                                f.write('+ '+str(os.path.splitext(filename3)[0])+'\n')
+                            if os.path.splitext(filename3)[1] not in banned_type:
+                                if hide_file_type == None:
+                                    f.write('+ '+str(filename3)+'\n')
+                                else:
+                                    f.write('+ '+str(os.path.splitext(filename3)[0])+'\n')
                         else:   # 文件夹
                             j0 += 1
                             if starting_from_h1 == None:
@@ -78,10 +80,11 @@ def write_file_list_in_markdown(directory, filename='a', reverse_positive_or_neg
                             for filename4 in filenames4[::reverse_positive_or_negative]:
                                 filename4_with_path = os.path.join(directory, filename1, filename2, filename3, filename4) 
                                 if os.path.isfile(filename4_with_path):   # 文件
-                                    if hide_file_type == None:
-                                        f.write('+ '+str(filename4)+'\n')
-                                    else:
-                                        f.write('+ '+str(os.path.splitext(filename4)[0])+'\n')
+                                    if os.path.splitext(filename4)[1] not in banned_type:
+                                        if hide_file_type == None:
+                                            f.write('+ '+str(filename4)+'\n')
+                                        else:
+                                            f.write('+ '+str(os.path.splitext(filename4)[0])+'\n')
                                 else:     # 文件夹
                                     if starting_from_h1 == None:
                                         f.write('#')
@@ -91,10 +94,11 @@ def write_file_list_in_markdown(directory, filename='a', reverse_positive_or_neg
                                     for filename5 in filenames5[::reverse_positive_or_negative]:
                                         filename5_with_path = os.path.join(directory, filename1, filename2, filename3, filename4, filename5) 
                                         if os.path.isfile(filename5_with_path):    # 文件
-                                            if hide_file_type == None:
-                                                f.write('+ '+str(filename5)+'\n')
-                                            else:
-                                                f.write('+ '+str(os.path.splitext(filename5)[0])+'\n')
+                                            if os.path.splitext(filename5)[1] not in banned_type:
+                                                if hide_file_type == None:
+                                                    f.write('+ '+str(filename5)+'\n')
+                                                else:
+                                                    f.write('+ '+str(os.path.splitext(filename5)[0])+'\n')
                                         else:   # 文件夹
                                             if starting_from_h1 == None:
                                                 f.write('#')
