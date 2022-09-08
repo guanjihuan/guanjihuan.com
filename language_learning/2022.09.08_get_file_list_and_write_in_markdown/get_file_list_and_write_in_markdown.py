@@ -8,13 +8,6 @@ def main():
     import os
     directory = 'E:/literature'
     write_file_list_in_markdown(directory)
-    # write_file_list_in_markdown(directory, banned_type=['.md'], hide_file_type=1, divided_line=1, show_second_number=1, show_third_number=1)
-    # write_file_list_in_markdown(directory, filename='a', reverse_positive_or_negative=1, starting_from_h1=None, banned_type=[], hide_file_type=None, divided_line=None, show_second_number=None, show_third_number=None)
-    
-    # import guan
-    # guan.write_file_list_in_markdown(directory)
-    # guan.write_file_list_in_markdown(directory, banned_type=['.md'], hide_file_type=1, divided_line=1, show_second_number=1, show_third_number=1)
-    # guan.write_file_list_in_markdown(directory, filename='a', reverse_positive_or_negative=1, starting_from_h1=None, banned_type=[], hide_file_type=None, divided_line=None, show_second_number=None, show_third_number=None)
 
 
 def write_file_list_in_markdown(directory, filename='a', reverse_positive_or_negative=1, starting_from_h1=None, banned_type=[], hide_file_type=None, divided_line=None, show_second_number=None, show_third_number=None): 
@@ -103,6 +96,20 @@ def write_file_list_in_markdown(directory, filename='a', reverse_positive_or_neg
                                             if starting_from_h1 == None:
                                                 f.write('#')
                                             f.write('##### '+str(filename5)+'\n')
+
+                                            filenames6 = os.listdir(filename5_with_path)
+                                            for filename6 in filenames6[::reverse_positive_or_negative]:
+                                                filename6_with_path = os.path.join(directory, filename1, filename2, filename3, filename4, filename5, filename6) 
+                                                if os.path.isfile(filename6_with_path):   # 文件
+                                                    if os.path.splitext(filename6)[1] not in banned_type:
+                                                        if hide_file_type == None:
+                                                            f.write('+ '+str(filename6)+'\n')
+                                                        else:
+                                                            f.write('+ '+str(os.path.splitext(filename6)[0])+'\n')
+                                                else:  # 文件夹
+                                                    if starting_from_h1 == None:
+                                                        f.write('#')
+                                                    f.write('###### '+str(filename6)+'\n')
     f.close()
 
 
