@@ -25,7 +25,7 @@ def write_file_list_in_markdown(directory, filename='a', reverse_positive_or_neg
         else:  # 文件夹
             u0 += 1
             if divided_line != None and u0 != 1:
-                f.write('\n--------\n\n')
+                f.write('--------\n\n')
             if starting_from_h1 == None:
                 f.write('#')
             f.write('# '+str(filename1)+'\n\n')
