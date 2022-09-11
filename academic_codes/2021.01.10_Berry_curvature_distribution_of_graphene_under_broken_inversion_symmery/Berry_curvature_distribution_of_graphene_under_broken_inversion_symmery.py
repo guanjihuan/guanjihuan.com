@@ -116,7 +116,7 @@ def find_vector_with_the_same_gauge(vector_1, vector_0):
     # print('二分查找找到的规范=', phase)   
     return vector_1
 
-def plot_3d_surface(x_array, y_array, matrix, xlabel='x', ylabel='y', zlabel='z', title='', fontsize=20, labelsize=15, show=1, save=0, filename='a', format='jpg', dpi=300, z_min=None, z_max=None, rcount=100, ccount=100): 
+def plot_3d_surface(x_array, y_array, matrix, xlabel='x', ylabel='y', zlabel='z', title='', fontsize=20, labelsize=15, show=1, save=0, filename='a', file_format='.jpg', dpi=300, z_min=None, z_max=None, rcount=100, ccount=100): 
     import matplotlib.pyplot as plt
     from matplotlib import cm
     from matplotlib.ticker import LinearLocator
@@ -150,7 +150,7 @@ def plot_3d_surface(x_array, y_array, matrix, xlabel='x', ylabel='y', zlabel='z'
     for l in cbar.ax.yaxis.get_ticklabels():
         l.set_family('Times New Roman')
     if save == 1:
-        plt.savefig(filename+'.'+format, dpi=dpi) 
+        plt.savefig(filename+file_format, dpi=dpi) 
     if show == 1:
         plt.show()
     plt.close('all')

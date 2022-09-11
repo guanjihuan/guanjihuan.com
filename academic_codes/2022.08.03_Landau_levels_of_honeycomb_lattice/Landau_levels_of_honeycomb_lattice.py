@@ -95,7 +95,7 @@ def calculate_eigenvalue_with_one_parameter(x_array, hamiltonian_function, print
     return eigenvalue_array
 
 
-def plot(x_array, y_array, xlabel='x', ylabel='y', title='', fontsize=20, labelsize=20, show=1, save=0, filename='a', format='jpg', dpi=300, style='', y_min=None, y_max=None, linewidth=None, markersize=None, adjust_bottom=0.2, adjust_left=0.2): 
+def plot(x_array, y_array, xlabel='x', ylabel='y', title='', fontsize=20, labelsize=20, show=1, save=0, filename='a', file_format='.jpg', dpi=300, style='', y_min=None, y_max=None, linewidth=None, markersize=None, adjust_bottom=0.2, adjust_left=0.2): 
     import matplotlib.pyplot as plt
     fig, ax = plt.subplots()
     plt.subplots_adjust(bottom=adjust_bottom, left=adjust_left)
@@ -114,7 +114,7 @@ def plot(x_array, y_array, xlabel='x', ylabel='y', title='', fontsize=20, labels
             y_max=max(y_array)
         ax.set_ylim(y_min, y_max)
     if save == 1:
-        plt.savefig(filename+'.'+format, dpi=dpi) 
+        plt.savefig(filename+file_format, dpi=dpi) 
     if show == 1:
         plt.show()
     plt.close('all')
