@@ -1,3 +1,9 @@
+"""
+This code is supported by the website: https://www.guanjihuan.com
+The newest version of this code is on the web page: https://www.guanjihuan.com/archives/25943
+"""
+
+
 def main():
     directory = 'E:/test'
     creat_necessary_file(directory)
