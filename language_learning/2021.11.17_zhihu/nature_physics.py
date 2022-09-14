@@ -35,4 +35,3 @@ for article in all_article:
     time = article.find('time', {"class": "c-meta__item c-meta__item--block-at-lg"}).get_text()
     f.write(time+'</p>')
 f.close()
-
