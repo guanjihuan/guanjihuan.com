@@ -9,7 +9,7 @@ def main():
     write_file_list_in_markdown(directory)
 
 
-def write_file_list_in_markdown(directory, filename='a', reverse_positive_or_negative=1, starting_from_h1=None, banned_file_format=[], hide_file_format=None, divided_line=None, show_second_number=None, show_third_number=None): 
+def write_file_list_in_markdown(directory='./', filename='a', reverse_positive_or_negative=1, starting_from_h1=None, banned_file_format=[], hide_file_format=None, divided_line=None, show_second_number=None, show_third_number=None): 
     import os
     f = open(filename+'.md', 'w', encoding="utf-8")
     filenames1 = os.listdir(directory)

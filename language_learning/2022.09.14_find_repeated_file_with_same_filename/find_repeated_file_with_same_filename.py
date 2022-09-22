@@ -13,17 +13,18 @@ def main():
     print(repeated_file)
 
     # import guan
-    # repeated_file = guan.find_repeated_file_with_same_filename(directory)
+    # repeated_file = guan.find_repeated_file_with_same_filename(directory='./', missed_directory='./missed_directory', num=1000)
     # print(repeated_file)
 
 
-def find_repeated_file_with_same_filename(directory, num=1000):
+def find_repeated_file_with_same_filename(directory='./', missed_directory='./missed_directory', num=1000):
     import os
     from collections import Counter
     file_list = []
     for root, dirs, files in os.walk(directory):
         for i0 in range(len(files)):
-            file_list.append(files[i0])
+            if missed_directory not in root:
+                file_list.append(files[i0])
     count_file = Counter(file_list).most_common(num)
     repeated_file = []
     for item in count_file:
