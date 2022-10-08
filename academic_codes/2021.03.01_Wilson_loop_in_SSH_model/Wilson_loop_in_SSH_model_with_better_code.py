@@ -12,7 +12,7 @@ def hamiltonian(k):
     gamma = 0.5
     lambda0 = 1
     delta = 0
-    h = np.zeros((2, 2))*(1+0j)
+    h = np.zeros((2, 2), dtype=complex)
     h[0,0] = delta
     h[1,1] = -delta
     h[0,1] = gamma+lambda0*cmath.exp(-1j*k)

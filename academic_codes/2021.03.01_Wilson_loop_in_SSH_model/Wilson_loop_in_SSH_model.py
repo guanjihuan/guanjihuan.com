@@ -11,7 +11,7 @@ from math import *
 def hamiltonian(k):  # SSH模型哈密顿量
     gamma = 0.5
     lambda0 = 1
-    h = np.zeros((2, 2))*(1+0j)
+    h = np.zeros((2, 2), dtype=complex)
     h[0,0] = 0
     h[1,1] = 0
     h[0,1] = gamma+lambda0*cmath.exp(-1j*k)
