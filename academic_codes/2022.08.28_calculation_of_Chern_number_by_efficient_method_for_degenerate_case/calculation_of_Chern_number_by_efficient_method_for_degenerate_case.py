@@ -63,46 +63,46 @@ def calculate_chern_number_for_square_lattice_with_efficient_method_for_degenera
             eigenvalue, vector_delta_kx_ky = np.linalg.eigh(H_delta_kx_ky)
             dim = len(index_of_bands)
             det_value = 1
-            # first dot
+            # first dot product
             dot_matrix = np.zeros((dim , dim), dtype=complex)
             i0 = 0
             for dim1 in index_of_bands:
                 j0 = 0
                 for dim2 in index_of_bands:
-                    dot_matrix[dim1, dim2] = np.dot(np.conj(vector[:, dim1]), vector_delta_kx[:, dim2])
+                    dot_matrix[i0, j0] = np.dot(np.conj(vector[:, dim1]), vector_delta_kx[:, dim2])
                     j0 += 1
                 i0 += 1
             dot_matrix = np.linalg.det(dot_matrix)/abs(np.linalg.det(dot_matrix))
             det_value = det_value*dot_matrix
-            # second dot
+            # second dot product
             dot_matrix = np.zeros((dim , dim), dtype=complex)
             i0 = 0
             for dim1 in index_of_bands:
                 j0 = 0
                 for dim2 in index_of_bands:
-                    dot_matrix[dim1, dim2] = np.dot(np.conj(vector_delta_kx[:, dim1]), vector_delta_kx_ky[:, dim2])
+                    dot_matrix[i0, j0] = np.dot(np.conj(vector_delta_kx[:, dim1]), vector_delta_kx_ky[:, dim2])
                     j0 += 1
                 i0 += 1
             dot_matrix = np.linalg.det(dot_matrix)/abs(np.linalg.det(dot_matrix))
             det_value = det_value*dot_matrix
-            # third dot
+            # third dot product
             dot_matrix = np.zeros((dim , dim), dtype=complex)
             i0 = 0
             for dim1 in index_of_bands:
                 j0 = 0
                 for dim2 in index_of_bands:
-                    dot_matrix[dim1, dim2] = np.dot(np.conj(vector_delta_kx_ky[:, dim1]), vector_delta_ky[:, dim2])
+                    dot_matrix[i0, j0] = np.dot(np.conj(vector_delta_kx_ky[:, dim1]), vector_delta_ky[:, dim2])
                     j0 += 1
                 i0 += 1
             dot_matrix = np.linalg.det(dot_matrix)/abs(np.linalg.det(dot_matrix))
             det_value = det_value*dot_matrix
-            # four dot
+            # four dot product
             dot_matrix = np.zeros((dim , dim), dtype=complex)
             i0 = 0
             for dim1 in index_of_bands:
                 j0 = 0
                 for dim2 in index_of_bands:
-                    dot_matrix[dim1, dim2] = np.dot(np.conj(vector_delta_ky[:, dim1]), vector[:, dim2])
+                    dot_matrix[i0, j0] = np.dot(np.conj(vector_delta_ky[:, dim1]), vector[:, dim2])
                     j0 += 1
                 i0 += 1
             dot_matrix = np.linalg.det(dot_matrix)/abs(np.linalg.det(dot_matrix))
