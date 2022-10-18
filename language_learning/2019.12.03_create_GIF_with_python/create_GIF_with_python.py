@@ -1,7 +1,7 @@
 import imageio
 import numpy as np
 import os
-os.chdir('D:/data')  # 设置文件读取和保存位置
+# os.chdir('E:/data')  # 设置文件读取和保存位置
 
 images = []
 for i in range(1000):
