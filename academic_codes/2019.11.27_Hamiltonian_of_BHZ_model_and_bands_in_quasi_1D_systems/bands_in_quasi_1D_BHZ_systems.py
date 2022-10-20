@@ -16,9 +16,9 @@ def get_terms(A, B, C, D, M, a):
     V_ss = (D+B)/(a**2)
     V_pp = (D-B)/(a**2)
     V_sp = -1j*A/(2*a)
-    H0 = np.zeros((4, 4))*(1+0j)  # 在位能 (on-site energy)
-    H1 = np.zeros((4, 4))*(1+0j)  # x方向的跃迁 (hopping)
-    H2 = np.zeros((4, 4))*(1+0j)  # y方向的跃迁 (hopping)
+    H0 = np.zeros((4, 4), dtype=complex)  # 在位能 (on-site energy)
+    H1 = np.zeros((4, 4), dtype=complex)  # x方向的跃迁 (hopping)
+    H2 = np.zeros((4, 4), dtype=complex)  # y方向的跃迁 (hopping)
     H0[0, 0] = E_s
     H0[1, 1] = E_p
     H0[2, 2] = E_s
@@ -46,8 +46,8 @@ def get_terms(A, B, C, D, M, a):
 
 def BHZ_model(k, A=0.3645/5, B=-0.686/25, C=0, D=-0.512/25, M=-0.01, a=1, N=100):  # 这边数值是不赋值时的默认参数
     H0, H1, H2 = get_terms(A, B, C, D, M, a)
-    H00 = np.zeros((4*N, 4*N))*(1+0j)  # 元胞内，条带宽度为N
-    H01 = np.zeros((4*N, 4*N))*(1+0j)  # 条带方向元胞间的跃迁
+    H00 = np.zeros((4*N, 4*N), dtype=complex)  # 元胞内，条带宽度为N
+    H01 = np.zeros((4*N, 4*N), dtype=complex)  # 条带方向元胞间的跃迁
     for i in range(N):
         H00[i*4+0:i*4+4, i*4+0:i*4+4] = H0  # a:b代表 a <= x < b
         H01[i*4+0:i*4+4, i*4+0:i*4+4] = H1
