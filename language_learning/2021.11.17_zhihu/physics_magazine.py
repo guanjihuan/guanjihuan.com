@@ -26,11 +26,11 @@ for article in all_articles:
                 href = 'https://physics.aps.org'+ href
             if href not in match_href:
                 match_href.append(href)
-                f.write('<p><a target=\"_blank\" href=\"')
+                f.write('<li><a target=\"_blank\" href=\"')
                 f.write(href)   # 文章链接
                 f.write('\">')
                 f.write(a_tag.get_text())
                 f.write('</a>&nbsp;&nbsp;')
     time = article.find('time', {"class": "feed-item-date"}).get_text()
-    f.write(time+'</p>')
+    f.write(time+'</li>')
 f.close()

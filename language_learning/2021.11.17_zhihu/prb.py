@@ -31,12 +31,12 @@ for loop in range(1):
                     href = 'https://journals.aps.org'+ href
                 if href not in match_href and re.search('\?', href)==None:  # 链接不重复
                     match_href.append(href)
-                    f.write('<p><a target=\"_blank\" href=\"')
+                    f.write('<li><a target=\"_blank\" href=\"')
                     f.write(href)   # 文章链接
                     f.write('\">')
                     f.write(a_tag.get_text())
                     f.write('</a>&nbsp;&nbsp;')
         info = article.find('h6', {"class": "pub-info"}).get_text()
-        f.write(re.findall('– Published .*', info, re.S)[0][12:]+'</p>')
+        f.write(re.findall('– Published .*', info, re.S)[0][12:]+'</li>')
 f.close()
 

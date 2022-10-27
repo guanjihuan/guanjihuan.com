@@ -15,7 +15,7 @@ day = datetime.datetime.now().day
 # 获取链接
 match_href = []
 # 由于没有模拟登录知乎，因此只能爬取到最新的两篇文章
-authors = ["https://www.zhihu.com/people/g3508/posts", # Guan
+authors = ["https://www.zhihu.com/people/guanjihuan/posts", # Guan
 ]
 for i0 in range(len(authors)):
     start_link = authors[i0]
@@ -47,7 +47,7 @@ for href in match_href_new:
         html = urlopen(href).read().decode('utf-8')   # 打开文章链接
         soup = BeautifulSoup(html, features='lxml') # 放入soup中
         title = soup.title   # 文章标题
-        f.write('<p><a target=\"_blank\" href=\"')
+        f.write('<li><a target=\"_blank\" href=\"')
         f.write(str(href))   # 文章链接
         f.write('\">')
         f.write(str(title.get_text()[:-5]))
@@ -55,7 +55,7 @@ for href in match_href_new:
         author = soup.find("span", {"class": "UserLink AuthorInfo-name"})
         f.write(str(author.get_text()+'&nbsp;&nbsp;'))
         post_time = soup.find("div", {"class" : "ContentItem-time"})
-        f.write(str(post_time.get_text()[4:-6])+'</p>')
+        f.write(str(post_time.get_text()[4:-6])+'</li>')
     except:
         pass
 f.close()
