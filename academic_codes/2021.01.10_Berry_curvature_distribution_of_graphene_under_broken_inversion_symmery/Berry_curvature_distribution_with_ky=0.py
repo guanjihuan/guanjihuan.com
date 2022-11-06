@@ -11,7 +11,7 @@ import time
 
 
 def hamiltonian(k1, k2, t1=2.82, a=1/sqrt(3)):  # 石墨烯哈密顿量（a为原子间距，不赋值的话默认为1/sqrt(3)）
-    h = np.zeros((2, 2))*(1+0j)
+    h = np.zeros((2, 2), dtype=complex)
     h[0, 0] = 0.28/2
     h[1, 1] = -0.28/2
     h[1, 0] = t1*(cmath.exp(1j*k2*a)+cmath.exp(1j*sqrt(3)/2*k1*a-1j/2*k2*a)+cmath.exp(-1j*sqrt(3)/2*k1*a-1j/2*k2*a))

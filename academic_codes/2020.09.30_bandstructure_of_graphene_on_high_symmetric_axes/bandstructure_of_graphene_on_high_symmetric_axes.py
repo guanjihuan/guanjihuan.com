@@ -10,9 +10,9 @@ import cmath  # 要处理复数情况，用到cmath.exp()
 
 
 def hamiltonian(k1, k2, M=0, t1=1, a=1/sqrt(3)):  # Haldane哈密顿量(a为原子间距，不赋值的话默认为1/sqrt(3)）
-    h0 = np.zeros((2, 2))*(1+0j)
-    h1 = np.zeros((2, 2))*(1+0j)
-    h2 = np.zeros((2, 2))*(1+0j)
+    h0 = np.zeros((2, 2), dtype=complex)
+    h1 = np.zeros((2, 2), dtype=complex)
+    h2 = np.zeros((2, 2), dtype=complex)
 
     # 质量项(mass term), 用于打开带隙
     h0[0, 0] = M

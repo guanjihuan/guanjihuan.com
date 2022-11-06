@@ -11,7 +11,7 @@ import time
 
 
 def hamiltonian(k1, k2, t1=2.82, a=1/sqrt(3)):  # 石墨烯哈密顿量（a为原子间距，不赋值的话默认为1/sqrt(3)）
-    h = np.zeros((2, 2))*(1+0j)
+    h = np.zeros((2, 2), dtype=complex)
     h[0, 0] = 0.28/2
     h[1, 1] = -0.28/2
     h[1, 0] = t1*(cmath.exp(1j*k2*a)+cmath.exp(1j*sqrt(3)/2*k1*a-1j/2*k2*a)+cmath.exp(-1j*sqrt(3)/2*k1*a-1j/2*k2*a))
@@ -69,9 +69,9 @@ def main():
             j0 += 1
 
         if band==0:
-            plot_3d_surface(kx_array/pi, ky_array/pi, F_all, xlabel='kx', ylabel='ky', zlabel='Berry curvature', title='Valence Band', rcount=300, ccount=300)
+            plot_3d_surface(kx_array/pi, ky_array/pi, F_all, xlabel='k_x (pi)', ylabel='k_y (pi)', zlabel='Berry curvature', title='Valence Band', rcount=300, ccount=300)
         else:
-            plot_3d_surface(kx_array/pi, ky_array/pi, F_all, xlabel='kx', ylabel='ky', zlabel='Berry curvature', title='Conductance Band', rcount=300, ccount=300)
+            plot_3d_surface(kx_array/pi, ky_array/pi, F_all, xlabel='k_x (pi)', ylabel='k_y (pi)', zlabel='Berry curvature', title='Conductance Band', rcount=300, ccount=300)
         # import guan
         # if band==0:
         #     guan.plot_3d_surface(kx_array/pi, ky_array/pi, F_all, xlabel='kx', ylabel='ky', zlabel='Berry curvature', title='Valence Band', rcount=300, ccount=300)
