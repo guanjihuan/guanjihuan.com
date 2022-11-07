@@ -7,13 +7,13 @@ import guan
 import numpy as np
 
 
-# double chain model with different potentials
+# double chains model with different potentials
 unit_cell = np.array([[0, 0], [0, 0.5]])
 hopping = np.eye(2)
 hamiltonian_function_1 = guan.one_dimensional_fourier_transform_with_k(unit_cell, hopping)
 k_array_1 = np.linspace(-np.pi, np.pi, 600)
 eigenvalue_array_1 = guan.calculate_eigenvalue_with_one_parameter(k_array_1, hamiltonian_function_1)
-# guan.plot(k_array_1, eigenvalue_array_1, xlabel='k', ylabel='E', style='k', title='double chain model with different potentials')
+# guan.plot(k_array_1, eigenvalue_array_1, xlabel='k', ylabel='E', style='k', title='double chains model with different potentials')
 
 # n times band folding
 n = 2
@@ -90,7 +90,7 @@ for j00 in range(dim):
         else:
             guan.plot_without_starting_fig(plt_1, fig_1, ax_1, k_array_new_1, eigenvalue_array_1[index_array_new_1, j00], style='*k')
             guan.plot_without_starting_fig(plt_2, fig_2, ax_2, k_array_new_2, eigenvalue_array_2[index_array_new_2, i00], style='*k')
-guan.plot_without_starting_fig(plt_1, fig_1, ax_1, [], [], xlabel='k', ylabel='E', title='one dimensional chain model')
+guan.plot_without_starting_fig(plt_1, fig_1, ax_1, [], [], xlabel='k', ylabel='E', title='double chains model with different potentials')
 guan.plot_without_starting_fig(plt_2, fig_2, ax_2, [], [], xlabel='k', ylabel='E', title='%i times band folding'%n)
 plt_1.show()
 plt_2.show()
