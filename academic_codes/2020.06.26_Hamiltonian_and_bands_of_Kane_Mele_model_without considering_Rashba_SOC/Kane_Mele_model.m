@@ -93,7 +93,7 @@ H = h00 + h01 * exp(1j * k) + h01' * exp(-1j * k);
 end
 
 function sign = sign_spin(spin)
-if spin == 0
+if spin == 1
     sign = 1;
 else
     sign = -1;
