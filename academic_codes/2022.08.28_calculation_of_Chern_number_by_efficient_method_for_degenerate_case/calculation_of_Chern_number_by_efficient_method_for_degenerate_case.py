@@ -96,7 +96,7 @@ def calculate_chern_number_for_square_lattice_with_efficient_method_for_degenera
                 i0 += 1
             dot_matrix = np.linalg.det(dot_matrix)/abs(np.linalg.det(dot_matrix))
             det_value = det_value*dot_matrix
-            # four dot product
+            # fourth dot product
             dot_matrix = np.zeros((dim , dim), dtype=complex)
             i0 = 0
             for dim1 in index_of_bands:
