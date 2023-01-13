@@ -13,23 +13,26 @@ def main():
     print(repeated_file)
 
     # import guan
-    # repeated_file = guan.find_repeated_file_with_same_filename(directory='./', missed_directory_with_words=[], missed_file_with_words=[], num=1000)
+    # repeated_file = guan.find_repeated_file_with_same_filename(directory='./', ignored_directory_with_words=[], ignored_file_with_words=[], num=1000)
     # print(repeated_file)
 
 
-def find_repeated_file_with_same_filename(directory='./', missed_directory_with_words=[], missed_file_with_words=[], num=1000):
+def find_repeated_file_with_same_filename(directory='./', ignored_directory_with_words=[], ignored_file_with_words=[], num=1000):
     import os
     from collections import Counter
     file_list = []
     for root, dirs, files in os.walk(directory):
         for i0 in range(len(files)):
             file_list.append(files[i0])
-            for word in missed_file_with_words:
-                if word in files[i0]:
-                    file_list.remove(files[i0])   
-            for word in missed_directory_with_words:
+            for word in ignored_directory_with_words:
                 if word in root:
-                    file_list.remove(files[i0])   
+                    file_list.remove(files[i0])       
+            for word in ignored_file_with_words:
+                if word in files[i0]:
+                    try:
+                        file_list.remove(files[i0])   
+                    except:
+                        pass 
     count_file = Counter(file_list).most_common(num)
     repeated_file = []
     for item in count_file:

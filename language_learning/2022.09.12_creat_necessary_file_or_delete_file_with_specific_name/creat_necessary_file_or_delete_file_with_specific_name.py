@@ -14,27 +14,27 @@ def main():
     # guan.delete_file_with_specific_name(directory)
 
 
-def creat_necessary_file(directory, filename='readme', file_format='.md', content='', overwrite=None, missed_directory_with_words=[]):
+def creat_necessary_file(directory, filename='readme', file_format='.md', content='', overwrite=None, ignored_directory_with_words=[]):
     import os
     directory_with_file = []
-    missed_directory = []
+    ignored_directory = []
     for root, dirs, files in os.walk(directory):
         for i0 in range(len(files)):
             if root not in directory_with_file:
                 directory_with_file.append(root)
             if files[i0] == filename+file_format:
-                if root not in missed_directory:
-                    missed_directory.append(root)
+                if root not in ignored_directory:
+                    ignored_directory.append(root)
     if overwrite == None:
-        for root in missed_directory:
+        for root in ignored_directory:
             directory_with_file.remove(root)
-    missed_directory_more =[]
+    ignored_directory_more =[]
     for root in directory_with_file: 
-        for word in missed_directory_with_words:
+        for word in ignored_directory_with_words:
             if word in root:
-                if root not in missed_directory_more:
-                    missed_directory_more.append(root)
-    for root in missed_directory_more:
+                if root not in ignored_directory_more:
+                    ignored_directory_more.append(root)
+    for root in ignored_directory_more:
         directory_with_file.remove(root) 
     for root in directory_with_file:
         os.chdir(root)
