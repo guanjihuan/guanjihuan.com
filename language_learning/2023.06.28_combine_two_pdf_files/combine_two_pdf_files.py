@@ -25,10 +25,8 @@ with open('b.pdf', 'rb') as file2:
         output_pdf.add_page(pdf2.pages[page])
         
 # 保存合并后的PDF文件
-with open('combined_file.pdf', 'wb') as merged_file:
-    output_pdf.write(merged_file)
-
-
+with open('combined_file.pdf', 'wb') as combined_file:
+    output_pdf.write(combined_file)
 
 # import guan
-# guan.combine_two_pdf_files(input_file1='a.pdf', input_file2='b.pdf', output_file='combined_file.pdf')
+# guan.combine_two_pdf_files(input_file_1='a.pdf', input_file_2='b.pdf', output_file='combined_file.pdf')
