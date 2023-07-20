@@ -1,8 +1,8 @@
- !this code is supported by the website: https://www.guanjihuan.com
- !the newest version of this code is on the web page: https://www.guanjihuan.com/archives/34966
+! This code is supported by the website: https://www.guanjihuan.com
+! The newest version of this code is on the web page: https://www.guanjihuan.com/archives/34966
 
 
-module module_1
+module module_1  ! 第一个模块
 
   implicit none
   contains  ! 模块中包含以下子程序和函数
@@ -19,7 +19,7 @@ module module_1
 end module module_1
 
 
-include 'example_include_1.f90'
+include 'example_include_1.f90'  ! include文件中包含第二个模块
 
 
 program main
@@ -51,9 +51,9 @@ write(*,*) 'test_3'
 end subroutine subroutine_3
 
 
-function function_3(x) result(y) ! 模块中的函数
+function function_3(x) result(y)
 double precision x, y
 y = 8.d0*x
 end function function_3
 
-include 'example_include_2.f90'
+include 'example_include_2.f90'  ! include文件中包含第四个子程序和第四个函数
