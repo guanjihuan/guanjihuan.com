@@ -1,0 +1,22 @@
+\documentclass{article}
+\usepackage{graphicx}
+
+% 加上以下语句，S字母可任意修改
+\renewcommand{\thefigure}{S\arabic{figure}}  
+\renewcommand{\theequation}{S\arabic{equation}} 
+
+\begin{document}
+
+Here are Eq. (\ref{eq:mass_energy_equivalence}) and Fig. \ref{fig:a}.
+
+\begin{equation}
+    E=mc^2 \label{eq:mass_energy_equivalence}
+\end{equation}
+
+\begin{figure}[htbp]
+    % \includegraphics*[width=0.5\textwidth]{a.eps}
+    \caption{This is a caption. Image is not shown.}
+    \label{fig:a}
+\end{figure}
+
+\end{document}
