@@ -1,0 +1,50 @@
+\documentclass{beamer}
+\usepackage{ctex}  %一个支持中文宏包，如果不用中文无法显示
+\usepackage{graphicx} %这个包提供\includegraphics命令来插入图片
+
+\usetheme{Boadilla}  %主题
+\usecolortheme{default}  %主题的颜色
+
+\title{这是PPT标题}  %标题
+\author{作者名字\inst{1}，作者名字\inst{2}}     %作者
+\institute{\inst{1}第一个单位\and\inst{2}第二个单位}  %这里的\and有换行的效果
+\date{\today}        %时间（默认也会显示）
+\logo{\includegraphics[height=1.0cm]{1.jpg}}  %右下角的小log
+
+\begin{document}         %正文开始
+	\begin{frame}    %相当于ppt里的一页
+		\titlepage   %标题页
+	\end{frame}
+	\begin{frame}
+		\frametitle{目录} %当前页的标题  
+		\tableofcontents  %制作目录，需要\section{}配合
+	\end{frame}
+	
+	\section{第一节}    %用来做目录
+	\begin{frame}   
+		\frametitle{当前页的标题1}  
+		这是第一节第一页的内容。This is a text in the first frame. This is a text in the first frame. This is a text in the first frame.
+	\end{frame}
+	
+	\section{第二节}  
+	\begin{frame}  
+		\frametitle{当前页的标题2} 
+		这是第二节第一页的内容。这里使用了\textbackslash pause。\pause This is a text in the second frame. This is a text in the second frame. This is a text in the second frame.  %\pause是暂停，前后会分成两页。
+	\end{frame}
+	\begin{frame}
+	    \frametitle{当前页的标题3：Two-column slide}
+	    \begin{columns}   %分成列
+	    	\column{0.5\textwidth}  %占用一半  
+	    	This is a text in first column.
+	    	$$E=mc^2$$
+	    	\begin{itemize}  %制作列表
+	    		\item First item
+	    		\item Second item
+	    	\end{itemize}
+	    	\column{0.5\textwidth}  %占用一半  
+	    	This text will be in the second column
+	    	and on a second tought this is a nice looking
+	    	layout in some cases.
+	    \end{columns}
+	\end{frame}
+\end{document}
