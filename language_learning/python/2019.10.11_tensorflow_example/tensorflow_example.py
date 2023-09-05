@@ -1,4 +1,13 @@
-import tensorflow as tf  # 导入tensorflow
+"""
+This code is supported by the website: https://www.guanjihuan.com
+The newest version of this code is on the web page: https://www.guanjihuan.com/archives/124
+"""
+
+# import tensorflow as tf  # 导入tensorflow
+
+import tensorflow.compat.v1 as tf  # 之所以这么调用，是因为tensorflow版本2.0无法兼容版本1.0
+tf.compat.v1.disable_eager_execution()  # 这行代码可以保证 sess.run() 能够正常运行
+
 
 greeting = tf.constant('Hello Google Tensorflow!')  # 定义一个常量
 
@@ -28,7 +37,7 @@ print(linear)  # 直接打印是不能看到计算结果的，因为还未执行
 state = tf.Variable(3, name='counter')  # 变量tf.Variable
 init = tf.global_variables_initializer()  # 如果定义了变量,后面一定要有这个语句，用来初始化变量。
 with tf.Session() as sess:
-    sess.run(init)  # 变量一定要初始化变量
+    sess.run(init)  # 初始化变量
     print(sess.run(state))  # 执行语句并打印显示
 
 # 例子3：占位符tf.placeholder()，用来临时占坑，需要用feed_dict来传入数值。
