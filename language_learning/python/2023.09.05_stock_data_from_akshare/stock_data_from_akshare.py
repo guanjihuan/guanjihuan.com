@@ -5,6 +5,8 @@ The newest version of this code is on the web page: https://www.guanjihuan.com/a
 
 import guan
 
+print(len(guan.all_stock_symbols()), '\n')
+print(guan.all_stock_symbols(), '\n')
 print(guan.find_stock_name_from_symbol(symbol='000002'), '\n')
 title, stock_data = guan.history_data_of_one_stock(symbol='000002', period='daily')
 print(title, '\n')
