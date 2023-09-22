@@ -17,16 +17,6 @@ day = datetime.datetime.now().day
 # 由于没有模拟登录知乎，因此只能爬取到最新的两篇文章
 authors = ["https://www.zhihu.com/people/guanjihuan/posts"]  # Guan
 
-# authors = []
-# html = urlopen('https://www.guanjihuan.com/others').read().decode('utf-8')  # 打开网页
-# soup = BeautifulSoup(html, features='lxml') # 放入soup中
-# all_a_tag = soup.find_all('a', href=True)  # 获取超链接标签
-# for a_tag in all_a_tag:
-#     href = a_tag['href']  # 超链接字符串
-#     if re.search('www.zhihu.com/people/', href): # 文章的链接
-#         if href not in authors:
-#             authors.append(href)
-
 match_href = []
 for i0 in range(len(authors)):
     start_link = authors[i0]
@@ -55,6 +45,7 @@ for n in numbers:
 # 获取内容并写入文件
 f = open('zhihu.html', 'w', encoding='UTF-8') 
 f.write('<meta charset="utf-8"><style type="text/css">a{text-decoration: none;color: #004e4e;}a:hover {text-decoration: underline;color: red; }</style>')
+
 f.write('<p>'+str(year)+'.'+str(month).rjust(2,'0')+'.'+str(day).rjust(2,'0')+' 已更新</p>')
 for href in match_href_new: 
     try:
