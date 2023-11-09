@@ -1,3 +1,8 @@
+"""
+This code is supported by the website: https://www.guanjihuan.com
+The newest version of this code is on the web page: https://www.guanjihuan.com/archives/37468
+"""
+
 import torch
 import numpy as np
 
@@ -12,6 +17,14 @@ print('\n\nTorch向量：\n', vector)
 matrix = torch.tensor([[1, 2, 3], [4, 5, 6]]) # # 创建一个Torch矩阵
 print('\n\nTorch矩阵：\n', matrix)
 
+int_tensor = torch.IntTensor([2])
+float_tensor = torch.FloatTensor([2])
+double_tensor = torch.DoubleTensor([2])
+print('\n\n')
+print(int_tensor)
+print(float_tensor)
+print(double_tensor)
+
 
 
 
@@ -23,7 +36,6 @@ numpy_array_2 = torch_tensor.numpy()  # Torch张量转NumPy数组
 print('\n\n\n\nNumPy数组：\n', numpy_array)
 print('\n\nNumpy数组转Torch张量：\n', torch_tensor) 
 print('\n\nTorch张量转NumPy数组：\n', numpy_array_2)
-
 
 
 
@@ -74,7 +86,7 @@ print(numpy_array_2)   # NumPy数组不会被修改
 print('\n\n\n\nNumPy绝对值和Torch绝对值：')
 numpy_array = [-1, -2, 1, 2]
 torch_tensor = torch.tensor(numpy_array)
-float_tensor = torch.FloatTensor(numpy_array)  # Torch的32位浮点张量
+float_tensor = torch.FloatTensor(numpy_array)  # Torch的浮点张量
 print(np.abs(numpy_array))
 print(np.abs(torch_tensor))  # 不报错。numpy.abs()也可以处理tensor数据，仍然是返回Torch张量
 print(np.abs(float_tensor))  # 不报错。numpy.abs()也可以处理tensor数据，仍然是返回Torch张量
@@ -98,7 +110,7 @@ print("\n使用torch.matmul()：\n", result_matmul)
 
 result_np_dot = np.dot(A, B) # np.dot()也可以处理tensor数据，但这里返回的是NumPy数组格式
 print('\n', type(result_np_dot))
-print(result_np_dot)
+print(result_np_dot, '\n')
 
 # A_array = np.array([[1, 2], [3, 4]])
 # B_array = np.array([[5, 6], [7, 8]])
