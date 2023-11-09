@@ -24,8 +24,7 @@ print('\n\n')
 print(int_tensor)
 print(float_tensor)
 print(double_tensor)
-
-
+print('张量在 CPU 或 GPU ：', int_tensor.device)
 
 
 # Torch数据和NumPy数据的转换
