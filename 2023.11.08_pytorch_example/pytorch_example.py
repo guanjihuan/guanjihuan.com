@@ -59,8 +59,8 @@ print(torch_tensor_2)  # Torch张量不会被修改
 
 
 
-# torch_tensor.numpy() 和 np.array() 的关系【前者共享内存，后者不共享内存】
-print('\n\n\n\ntorch_tensor.numpy() 和 np.array() 的关系：')
+# .numpy() 和 np.array() 的关系【前者共享内存，后者不共享内存】
+print('\n\n\n\n.numpy() 和 np.array() 的关系：')
 
 torch_tensor = torch.tensor([1, 2, 3])
 numpy_array = torch_tensor.numpy()  # 共享内存
