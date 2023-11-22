@@ -93,7 +93,7 @@ optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)  # 定义优�
 # 训练模型
 num_epochs = 3000 # 迭代次数
 losses = []  # 用于收集损失值
-for epoch in range(num_epochs):  # 开始训练
+for epoch in range(num_epochs):  # 开始训练。这里没有采用小样本分批（batch）训练。
     outputs = model.forward(x_data) # 前向传播。由于继承了torch.nn.Module类，默认使用forward方法，因此这里无需显式写出forward方法
     loss = criterion(outputs, y_data)  # 计算损失值
     optimizer.zero_grad() # 在每次训练的迭代，梯度清零
