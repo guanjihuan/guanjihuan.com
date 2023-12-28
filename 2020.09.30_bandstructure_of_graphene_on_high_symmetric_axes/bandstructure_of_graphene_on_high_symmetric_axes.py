@@ -5,7 +5,7 @@ The newest version of this code is on the web page: https://www.guanjihuan.com/a
 
 import numpy as np
 import matplotlib.pyplot as plt
-from math import *   # 引入sqrt(), pi, exp等
+from math import *   # 引入sqrt(), exp(), pi等
 import cmath  # 要处理复数情况，用到cmath.exp()
 
 

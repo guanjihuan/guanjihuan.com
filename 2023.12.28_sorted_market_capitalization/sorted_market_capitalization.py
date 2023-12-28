@@ -13,4 +13,4 @@ for i0 in range(30):
     stock_symbol = stock_data[list_index[i0], 1]
     stock_name = stock_data[list_index[i0], 2]
     market_capitalization = stock_data[list_index[i0], 17]/1e8
-    print(i0+1, stock_symbol, stock_name, market_capitalization)
+    print([i0+1, stock_symbol, stock_name, market_capitalization])
