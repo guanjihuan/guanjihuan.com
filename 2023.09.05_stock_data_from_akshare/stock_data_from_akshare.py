@@ -5,22 +5,14 @@ The newest version of this code is on the web page: https://www.guanjihuan.com/a
 
 import guan
 
-print(len(guan.all_stock_symbols()), '\n')
-print(guan.all_stock_symbols(), '\n')
-print(guan.find_stock_name_from_symbol(symbol='000002'), '\n')
 title, stock_data = guan.history_data_of_one_stock(symbol='000002', period='daily')
-print(title, '\n')
+print(title)
 print(stock_data[0])
-
-# 日线
-plt, fig, ax = guan.import_plt_and_start_fig_ax()
-guan.plot_without_starting_fig(plt, fig, ax, stock_data[:, 0], stock_data[:, 2], style='-')
-
-# 月线
-title, stock_data = guan.history_data_of_one_stock(symbol='000002', period='monthly')
-guan.plot_without_starting_fig(plt, fig, ax, stock_data[:, 0], stock_data[:, 2], style='or-')
-
-guan.plot_without_starting_fig(plt, fig, ax, [], [], xlabel='Time', ylabel='Stock Price')
-import datetime
-ax.set_xlim(datetime.date(2017, 1, 1), datetime.date(2023, 9, 5))
-plt.show()
+num = 30
+date_array = stock_data[0:num, 0]
+opening_array = stock_data[0:num, 1]
+closing_array = stock_data[0:num, 2]
+high_array = stock_data[0:num, 3]
+low_array = stock_data[0:num, 4]
+guan.plot(date_array, closing_array, style='o-', xlabel='date', ylabel='price')
+guan.plot_stock_line(date_array, opening_array, closing_array, high_array, low_array)
