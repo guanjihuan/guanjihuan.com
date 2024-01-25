@@ -4,9 +4,6 @@ The newest version of this code is on the web page: https://www.guanjihuan.com/a
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
-from math import *
-
 
 def hamiltonian(width, length, height):  
     h = np.zeros((width*length*height, width*length*height))
@@ -27,7 +24,6 @@ def hamiltonian(width, length, height):
                 h[k0*width*length+(i0+1)*width+j0, k0*width*length+i0*width+j0] = 1
     return h
 
-
 def main():
     height = 2  # z
     width = 3  # y
@@ -40,10 +36,7 @@ def main():
         for j0 in range(width):
             print('      y=', j0+1, ':')
             for i0 in range(length):
-                print('             x=', i0+1, ' ', -np.imag(green[k0*width*length+i0*width+j0, k0*width*length+i0*width+j0])/pi)   # 态密度
-
+                print('             x=', i0+1, ' ', -np.imag(green[k0*width*length+i0*width+j0, k0*width*length+i0*width+j0])/np.pi)   # 态密度
 
 if __name__ == "__main__":
     main()
-
-   

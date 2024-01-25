@@ -4,9 +4,6 @@ The newest version of this code is on the web page: https://www.guanjihuan.com/a
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
-from math import *
-
 
 def matrix_00(width, length):  
     h00 = np.zeros((width*length, width*length))
@@ -20,11 +17,9 @@ def matrix_00(width, length):
             h00[(x+1)*width+y, x*width+y] = 1
     return h00
 
-
 def matrix_01(width, length): 
     h01 = np.identity(width*length)
     return h01
-    
 
 def main():
     height = 2  # z
@@ -40,8 +35,7 @@ def main():
         for j0 in range(width):
             print('      y=', j0+1, ':')
             for k0 in range(length):
-                print('             x=', k0+1, ' ', -np.imag(G_ii_n_array[i0, k0*width+j0, k0*width+j0])/pi)   # 态密度
-
+                print('             x=', k0+1, ' ', -np.imag(G_ii_n_array[i0, k0*width+j0, k0*width+j0])/np.pi)   # 态密度
 
 def G_ii_n_with_Dyson_equation(width, length, height, E, eta, h00, h01):
     dim = length*width
@@ -76,27 +70,22 @@ def G_ii_n_with_Dyson_equation(width, length, height, E, eta, h00, h01):
         G_ii_n_array[i, :, :] = G_ii_n_minus
     return G_ii_n_array
 
-
 def Green_nn_n(E, eta, H00, V, G_nn_n_minus): # n>=2
     dim  = H00.shape[0]
     G_nn_n = np.linalg.inv((E+eta*1j)*np.identity(dim)-H00-np.dot(np.dot(V.transpose().conj(), G_nn_n_minus), V))
     return G_nn_n
 
-
 def Green_in_n(G_in_n_minus, V, G_nn_n):  # n>=2
     G_in_n = np.dot(np.dot(G_in_n_minus, V), G_nn_n)
     return G_in_n
-
 
 def Green_ni_n(G_nn_n, V, G_ni_n_minus): # n>=2
     G_ni_n = np.dot(np.dot(G_nn_n, V.transpose().conj()), G_ni_n_minus)
     return G_ni_n
 
-
 def Green_ii_n(G_ii_n_minus, G_in_n_minus, V, G_nn_n, G_ni_n_minus):  # n>=i
     G_ii_n = G_ii_n_minus+np.dot(np.dot(np.dot(np.dot(G_in_n_minus, V), G_nn_n), V.transpose().conj()),G_ni_n_minus)
     return G_ii_n
-
 
 if __name__ == '__main__': 
     main()
