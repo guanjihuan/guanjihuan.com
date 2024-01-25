@@ -3,7 +3,6 @@ This code is supported by the website: https://www.guanjihuan.com
 The newest version of this code is on the web page: https://www.guanjihuan.com/archives/22604
 """
 
-
 import numpy as np
 import cmath
 
@@ -25,24 +24,14 @@ def find_vector_with_fixed_gauge_by_making_one_component_real(vector, precision=
 vector_1 = np.array([np.sqrt(0.5), np.sqrt(0.5)])*cmath.exp(np.random.uniform(0, 1)*1j)
 vector_2 = np.array([1, 0])*cmath.exp(np.random.uniform(0, 1)*1j)
 
-print('\n随机规范的原向量：', vector_1)
+print('随机规范的原向量：', vector_1)
+angle = cmath.phase(vector_1[0])
+print('固定规范后的向量（方法1）：', vector_1*cmath.exp(-1j*angle))
 vector_1 = find_vector_with_fixed_gauge_by_making_one_component_real(vector_1, precision=0.001)
-print('固定规范后的向量：', vector_1)
+print('固定规范后的向量（方法2）：', vector_1)
 
 print('\n随机规范的原向量：', vector_2)
+angle = cmath.phase(vector_2[0])
+print('固定规范后的向量（方法1）：', vector_2*cmath.exp(-1j*angle))
 vector_2 = find_vector_with_fixed_gauge_by_making_one_component_real(vector_2, precision=0.001)
-print('固定规范后的向量：', vector_2)
-
-
-# # 可直接使用Guan软件包来调用以上函数：https://py.guanjihuan.com。
-# # 安装命令：pip install --upgrade guan。
-
-# import guan
-
-# print('\n随机规范的原向量：', vector_1)
-# vector_1 = guan.find_vector_with_fixed_gauge_by_making_one_component_real(vector_1, precision=0.001)
-# print('固定规范后的向量：', vector_1)
-
-# print('\n随机规范的原向量：', vector_2)
-# vector_2 = guan.find_vector_with_fixed_gauge_by_making_one_component_real(vector_2, precision=0.001)
-# print('固定规范后的向量：', vector_2)
+print('固定规范后的向量（方法2）：', vector_2)

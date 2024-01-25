@@ -69,10 +69,3 @@ vector1, vector2 = rotation_of_degenerate_vectors(eigenvector[:, 0], eigenvector
 print()
 print(vector1)
 print(vector2, '\n')
-
-
-# # 可直接使用Guan软件包来调用以上函数：https://py.guanjihuan.com。
-# # 安装命令：pip install --upgrade guan。
-# import guan
-# vector1, vector2 = guan.rotation_of_degenerate_vectors(vector1, vector2, index1=None, index2=None, precision=0.01, criterion=0.01, show_theta=0)
-# hamiltonian = guan.hamiltonian_of_bbh_model(kx, ky, gamma_x=0.5, gamma_y=0.5, lambda_x=1, lambda_y=1)
