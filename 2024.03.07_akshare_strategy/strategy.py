@@ -1,3 +1,8 @@
+"""
+This code is supported by the website: https://www.guanjihuan.com
+The newest version of this code is on the web page: https://www.guanjihuan.com/archives/38912
+"""
+
 import guan
 file_list_60 = guan.get_all_filenames_in_directory(directory='./2018_01_01_to_2024_03_07/stock_data_60', \
                                         file_format=None, show_root_path=0, sort=1, include_subdirectory=1)

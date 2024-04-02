@@ -1,3 +1,8 @@
+"""
+This code is supported by the website: https://www.guanjihuan.com
+The newest version of this code is on the web page: https://www.guanjihuan.com/archives/38912
+"""
+
 import guan
 
 stock_symbols_60, stock_symbols_00, stock_symbols_30, stock_symbols_68, \
