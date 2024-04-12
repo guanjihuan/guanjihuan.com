@@ -3,7 +3,7 @@ This code is supported by the website: https://www.guanjihuan.com
 The newest version of this code is on the web page: https://www.guanjihuan.com/archives/4536
 """
 
-from multiprocessing import Process
+import multiprocessing
 import os
 import time
 
@@ -31,10 +31,10 @@ if __name__ == '__main__':
     print('并行程序')
     print('Process id = %s.' % os.getpid())
     start_time = time.perf_counter()
-    p1 = Process(target=run_proc, args=('job1',))
-    p2 = Process(target=run_proc, args=('job2',))
-    p3 = Process(target=run_proc, args=('job3',))
-    p4 = Process(target=run_proc, args=('job4',))
+    p1 = multiprocessing.Process(target=run_proc, args=('job1',))
+    p2 = multiprocessing.Process(target=run_proc, args=('job2',))
+    p3 = multiprocessing.Process(target=run_proc, args=('job3',))
+    p4 = multiprocessing.Process(target=run_proc, args=('job4',))
     p1.start()
     p2.start()
     p3.start()
