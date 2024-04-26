@@ -6,6 +6,7 @@ The newest version of this code is on the web page: https://www.guanjihuan.com/a
 # import tensorflow as tf
 import tensorflow.compat.v1 as tf  # 之所以这么调用，是因为tensorflow版本2.0无法兼容版本1.0
 tf.compat.v1.disable_eager_execution()  # 这行代码可以保证 sess.run() 能够正常运行
+# tf.disable_v2_behavior() # 或者使用这个代码，可代替上面一行
 import numpy as np
 import matplotlib.pyplot as plt
 
