@@ -12,16 +12,30 @@ x_array_torch_tensor = torch.from_numpy(x_array)
 
 y_array_torch_tensor = torch.nn.functional.sigmoid(x_array_torch_tensor)
 plt.plot(x_array_torch_tensor, y_array_torch_tensor)
+plt.title('sigmoid')
 plt.show()
 
 y_array_torch_tensor = torch.nn.functional.tanh(x_array_torch_tensor)
 plt.plot(x_array_torch_tensor, y_array_torch_tensor)
+plt.title('tanh')
 plt.show()
 
 y_array_torch_tensor = torch.nn.functional.relu(x_array_torch_tensor)
 plt.plot(x_array_torch_tensor, y_array_torch_tensor)
+plt.title('relu')
 plt.show()
 
 y_array_torch_tensor = torch.nn.functional.leaky_relu(x_array_torch_tensor)
 plt.plot(x_array_torch_tensor, y_array_torch_tensor)
+plt.title('leaky_relu')
+plt.show()
+
+y_array_torch_tensor = torch.nn.functional.gelu(x_array_torch_tensor)
+plt.plot(x_array_torch_tensor, y_array_torch_tensor)
+plt.title('gelu')
+plt.show()
+
+y_array_torch_tensor = torch.nn.functional.silu(x_array_torch_tensor)
+plt.plot(x_array_torch_tensor, y_array_torch_tensor)
+plt.title('silu')
 plt.show()
