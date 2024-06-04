@@ -3,7 +3,7 @@ This code is supported by the website: https://www.guanjihuan.com
 The newest version of this code is on the web page: https://www.guanjihuan.com/archives/41201
 """
 
-def get_break_signal_from_loss_array(loss_array, patience=10, min_delta=0.001):
+def get_break_signal_from_loss_array(loss_array, patience=100, min_delta=0.001):
     break_signal = 0
     counter = 0
     num = len(loss_array)
@@ -16,7 +16,7 @@ def get_break_signal_from_loss_array(loss_array, patience=10, min_delta=0.001):
     print(counter)  # 查看满足条件的次数
     return break_signal
 
-train_times = 100
+train_times = 50
 for i0 in range(train_times):
     print('Training...')
     loss_array = [10, 3, 1, 0.1, 0.02, 0.003, 0.001, 0.0004, 0.0005, 0.0001, 0.0003]
