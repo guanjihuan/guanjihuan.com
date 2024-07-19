@@ -63,27 +63,27 @@ for i00 in range(n):
                 index_array_new_2.append(i0)
                 index_array_new_1.append(j0)
     if i00 == 0:
-        guan.plot_without_starting_fig(plt_1, fig_1, ax_1, k_array_new_1, eigenvalue_array_1[index_array_new_1], style='*r')
-        guan.plot_without_starting_fig(plt_2, fig_2, ax_2, k_array_new_2, eigenvalue_array_2[index_array_new_2, i00], style='*r')
+        guan.plot_without_starting_fig_ax(plt_1, fig_1, ax_1, k_array_new_1, eigenvalue_array_1[index_array_new_1], style='*r')
+        guan.plot_without_starting_fig_ax(plt_2, fig_2, ax_2, k_array_new_2, eigenvalue_array_2[index_array_new_2, i00], style='*r')
     elif i00 == 1:
-        guan.plot_without_starting_fig(plt_1, fig_1, ax_1, k_array_new_1, eigenvalue_array_1[index_array_new_1], style='*b')
-        guan.plot_without_starting_fig(plt_2, fig_2, ax_2, k_array_new_2, eigenvalue_array_2[index_array_new_2, i00], style='*b')
+        guan.plot_without_starting_fig_ax(plt_1, fig_1, ax_1, k_array_new_1, eigenvalue_array_1[index_array_new_1], style='*b')
+        guan.plot_without_starting_fig_ax(plt_2, fig_2, ax_2, k_array_new_2, eigenvalue_array_2[index_array_new_2, i00], style='*b')
     elif i00 == 2:
-        guan.plot_without_starting_fig(plt_1, fig_1, ax_1, k_array_new_1, eigenvalue_array_1[index_array_new_1], style='*g')
-        guan.plot_without_starting_fig(plt_2, fig_2, ax_2, k_array_new_2, eigenvalue_array_2[index_array_new_2, i00], style='*g')
+        guan.plot_without_starting_fig_ax(plt_1, fig_1, ax_1, k_array_new_1, eigenvalue_array_1[index_array_new_1], style='*g')
+        guan.plot_without_starting_fig_ax(plt_2, fig_2, ax_2, k_array_new_2, eigenvalue_array_2[index_array_new_2, i00], style='*g')
     elif i00 == 3:
-        guan.plot_without_starting_fig(plt_1, fig_1, ax_1, k_array_new_1, eigenvalue_array_1[index_array_new_1], style='*c')
-        guan.plot_without_starting_fig(plt_2, fig_2, ax_2, k_array_new_2, eigenvalue_array_2[index_array_new_2, i00], style='*c')
+        guan.plot_without_starting_fig_ax(plt_1, fig_1, ax_1, k_array_new_1, eigenvalue_array_1[index_array_new_1], style='*c')
+        guan.plot_without_starting_fig_ax(plt_2, fig_2, ax_2, k_array_new_2, eigenvalue_array_2[index_array_new_2, i00], style='*c')
     elif i00 == 4:
-        guan.plot_without_starting_fig(plt_1, fig_1, ax_1, k_array_new_1, eigenvalue_array_1[index_array_new_1], style='*m')
-        guan.plot_without_starting_fig(plt_2, fig_2, ax_2, k_array_new_2, eigenvalue_array_2[index_array_new_2, i00], style='*m')
+        guan.plot_without_starting_fig_ax(plt_1, fig_1, ax_1, k_array_new_1, eigenvalue_array_1[index_array_new_1], style='*m')
+        guan.plot_without_starting_fig_ax(plt_2, fig_2, ax_2, k_array_new_2, eigenvalue_array_2[index_array_new_2, i00], style='*m')
     elif i00 == 5:
-        guan.plot_without_starting_fig(plt_1, fig_1, ax_1, k_array_new_1, eigenvalue_array_1[index_array_new_1], style='*y')
-        guan.plot_without_starting_fig(plt_2, fig_2, ax_2, k_array_new_2, eigenvalue_array_2[index_array_new_2, i00], style='*y')
+        guan.plot_without_starting_fig_ax(plt_1, fig_1, ax_1, k_array_new_1, eigenvalue_array_1[index_array_new_1], style='*y')
+        guan.plot_without_starting_fig_ax(plt_2, fig_2, ax_2, k_array_new_2, eigenvalue_array_2[index_array_new_2, i00], style='*y')
     else:
-        guan.plot_without_starting_fig(plt_1, fig_1, ax_1, k_array_new_1, eigenvalue_array_1[index_array_new_1], style='*k')
-        guan.plot_without_starting_fig(plt_2, fig_2, ax_2, k_array_new_2, eigenvalue_array_2[index_array_new_2, i00], style='*k')
-guan.plot_without_starting_fig(plt_1, fig_1, ax_1, [], [], xlabel='k', ylabel='E', title='one dimensional chain model')
-guan.plot_without_starting_fig(plt_2, fig_2, ax_2, [], [], xlabel='k', ylabel='E', title='%i times band folding'%n)
+        guan.plot_without_starting_fig_ax(plt_1, fig_1, ax_1, k_array_new_1, eigenvalue_array_1[index_array_new_1], style='*k')
+        guan.plot_without_starting_fig_ax(plt_2, fig_2, ax_2, k_array_new_2, eigenvalue_array_2[index_array_new_2, i00], style='*k')
+guan.plot_without_starting_fig_ax(plt_1, fig_1, ax_1, [], [], xlabel='k', ylabel='E', title='one dimensional chain model')
+guan.plot_without_starting_fig_ax(plt_2, fig_2, ax_2, [], [], xlabel='k', ylabel='E', title='%i times band folding'%n)
 plt_1.show()
 plt_2.show()
