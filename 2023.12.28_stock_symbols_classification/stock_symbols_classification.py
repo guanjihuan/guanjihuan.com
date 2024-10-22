@@ -61,8 +61,8 @@ num_stocks_68= len(stock_symbols_68)
 print('科创板股票数量：', num_stocks_68)
 # print(stock_symbols_68)
 
-# 新三板
-stock_symbols_8_4 = []
+# 新三板以及北交所
+stock_symbols_8_4_9 = []
 for stock_symbol in stock_symbols:
     find_82 = re.findall(r'^82', stock_symbol)
     find_83 = re.findall(r'^83', stock_symbol)
@@ -71,15 +71,16 @@ for stock_symbol in stock_symbols:
     find_430 = re.findall(r'^430', stock_symbol)
     find_420 = re.findall(r'^420', stock_symbol)
     find_400 = re.findall(r'^400', stock_symbol)
-    if find_82 != [] or find_83 != [] or find_87 != [] or find_88 != [] or find_430 != [] or find_420 != [] or find_400 != []:
-        stock_symbols_8_4.append(stock_symbol)
-num_stocks_8_4= len(stock_symbols_8_4)
-print('新三板股票数量：', num_stocks_8_4)
+    find_920 = re.findall(r'^920', stock_symbol)
+    if find_82 != [] or find_83 != [] or find_87 != [] or find_88 != [] or find_430 != [] or find_420 != [] or find_400 != [] or find_920 != []:
+        stock_symbols_8_4_9.append(stock_symbol)
+num_stocks_8_4_9= len(stock_symbols_8_4_9)
+print('新三板以及北交所股票数量：', num_stocks_8_4_9)
 # print(stock_symbols_8_4)
 
-print('所有股票数量：', num_stocks_60+num_stocks_00+num_stocks_30+num_stocks_68+num_stocks_8_4)
+print('所有股票数量：', num_stocks_60+num_stocks_00+num_stocks_30+num_stocks_68+num_stocks_8_4_9)
 
 # 检查遗漏的股票代码
 for stock_symbol in stock_symbols:
-    if stock_symbol not in stock_symbols_60 and stock_symbol not in stock_symbols_00 and stock_symbol not in stock_symbols_30 and stock_symbol not in stock_symbols_68 and stock_symbol not in stock_symbols_8_4:
+    if stock_symbol not in stock_symbols_60 and stock_symbol not in stock_symbols_00 and stock_symbol not in stock_symbols_30 and stock_symbol not in stock_symbols_68 and stock_symbol not in stock_symbols_8_4_9:
         print(stock_symbol)
