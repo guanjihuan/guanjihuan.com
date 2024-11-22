@@ -21,7 +21,7 @@ def Schmidt_orthogonalization(eigenvector):
 def verify_orthogonality(vectors):
     identity = np.eye(vectors.shape[1])
     product = np.dot(vectors.T.conj(), vectors)
-    return np.allclose(abs(product), identity)
+    return np.allclose(product, identity)
 
 # 对 np.linalg.eigh() 的特征向量正交化
 
