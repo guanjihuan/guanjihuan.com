@@ -1,0 +1,7 @@
+pw.x < pw.scf.silicon_bands.in > pw.scf.silicon_bands.out
+
+pw.x < pw.bands.silicon.in > pw.bands.silicon.out
+
+bands.x < pp.bands.silicon.in > pp.bands.silicon.out
+
+python plot_bands.py
