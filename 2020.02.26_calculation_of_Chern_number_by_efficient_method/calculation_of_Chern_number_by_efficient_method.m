@@ -3,11 +3,11 @@
 
 % 陈数高效法
 clear;clc;
-n=1000 % 积分密度
+n=100 % 积分密度
 delta=2*pi/n;
 C=0; 
-for kx=-pi:(2*pi/n):pi
-    for ky=-pi:(2*pi/n):pi
+for kx=-pi:(2*pi/n):pi-(2*pi/n)
+    for ky=-pi:(2*pi/n):pi-(2*pi/n)
         VV=get_vector(HH(kx,ky));
         Vkx=get_vector(HH(kx+delta,ky)); % 略偏离kx的波函数
         Vky=get_vector(HH(kx,ky+delta)); % 略偏离ky的波函数
