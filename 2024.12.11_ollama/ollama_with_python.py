@@ -9,7 +9,7 @@ response = ollama.chat(model="llama3.2:latest", messages=[{"role": "user", "cont
 for part in response:
     print(part['message']['content'], end='', flush=True)
 
-# 流式输出，且模型后台常驻（需要手动 ollama stop 关闭）
+# 流式输出，同时设置模型为后台常驻，需要手动 ollama stop 关闭
 import ollama
 response = ollama.chat(model="llama3.2:latest", messages=[{"role": "user", "content": "你好"}], stream=True, keep_alive=-1)
 for part in response:
