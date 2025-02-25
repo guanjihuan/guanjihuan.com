@@ -19,4 +19,4 @@ def API_server():
     return ai_response
 
 if __name__ == '__main__':
-    app.run(debug=True, threaded=True, port=123)
+    app.run(debug=True, threaded=True, port=123)  # 完成测试后推荐把 debug=True 关闭，否则当文件夹内部有发生文件改变时可能会重载运行
