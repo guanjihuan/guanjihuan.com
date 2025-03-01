@@ -3,9 +3,9 @@ import pickle
 data = [1, 2, 3]
 
 # 保存为文件
-with open('a.txt', 'wb') as f:
+with open('a.pkl', 'wb') as f:
     pickle.dump(data, f)
-with open('a.txt', 'rb') as f:
+with open('a.pkl', 'rb') as f:
     data_load_from_file = pickle.load(f)
 print(data_load_from_file)
 print()
