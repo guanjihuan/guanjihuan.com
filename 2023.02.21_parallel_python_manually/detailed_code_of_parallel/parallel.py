@@ -29,8 +29,6 @@ for parameter_str in parameter_str_array:
     with open('a'+str(index)+'.py', 'w') as f: # 写入
         f.write(content)
 
-
-
     # 以下处理任务上传文件
     old_file = 'a.sh'
     new_file = 'a'+str(index)+'.sh'
@@ -49,8 +47,6 @@ for parameter_str in parameter_str_array:
 
     with open('a'+str(index)+'.sh', 'w') as f: # 写入
         f.write(content)
-
-
 
     # 提交任务
     os.system('qsub '+new_file)

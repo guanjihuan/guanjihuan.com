@@ -1,2 +1,2 @@
-parameter=0
+parameter = 0
 print(f'hello world {parameter}')
