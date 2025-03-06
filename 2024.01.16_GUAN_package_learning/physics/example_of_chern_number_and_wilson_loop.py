@@ -1,4 +1,4 @@
-# 陈数和Wilson loop计算示例
+# 陈数和Wilson loop计算
 import guan
 import numpy as np
 chern_number = guan.calculate_chern_number_for_square_lattice_with_efficient_method(guan.hamiltonian_of_one_QAH_model, precision=100)

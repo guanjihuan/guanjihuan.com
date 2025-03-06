@@ -1,4 +1,4 @@
-# 电导和散射矩阵的计算示例
+# 电导和散射矩阵的计算
 import guan
 import numpy as np
 

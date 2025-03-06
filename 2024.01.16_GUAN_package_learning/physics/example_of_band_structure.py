@@ -1,4 +1,4 @@
-# 能带图计算示例
+# 能带图计算
 import guan
 import numpy as np
 k_array = np.linspace(-np.pi, np.pi, 100)

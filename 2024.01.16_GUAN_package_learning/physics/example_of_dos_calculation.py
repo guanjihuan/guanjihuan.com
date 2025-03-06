@@ -1,4 +1,4 @@
-# 使用格林函数计算态密度示例
+# 使用格林函数计算态密度
 import guan
 import numpy as np
 

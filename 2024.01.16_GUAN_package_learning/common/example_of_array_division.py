@@ -1,4 +1,4 @@
-# 数组分割示例
+# 数组分割
 import numpy as np
 import guan
 task_num = 4

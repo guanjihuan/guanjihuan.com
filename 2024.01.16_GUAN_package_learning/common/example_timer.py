@@ -1,4 +1,4 @@
-# 函数的计时器
+# 函数计时器
 import guan
 
 @guan.timer_decorator

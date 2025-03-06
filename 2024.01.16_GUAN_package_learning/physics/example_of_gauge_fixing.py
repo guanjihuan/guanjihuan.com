@@ -1,4 +1,4 @@
-# 波函数规范的选取示例
+# 波函数规范的选取
 import numpy as np
 import cmath
 import guan
