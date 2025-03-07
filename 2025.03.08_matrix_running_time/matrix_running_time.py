@@ -67,6 +67,12 @@ for n in n_array:
     create_time = time.time() - start_time
     print(f"for 循环赋值时间: {create_time:.3f} 秒")
 
+    # 矩阵行列式
+    start_time = time.time()
+    det_A = np.linalg.det(A)
+    det_time = time.time() - start_time
+    print(f"矩阵行列式时间: {det_time:.2f} 秒")
+
     # 矩阵乘法
     start_time = time.time()
     C = np.dot(A, B)
