@@ -6,7 +6,7 @@ The newest version of this code is on the web page: https://www.guanjihuan.com/a
 import numpy as np
 import time
 
-n = 7000
+n = 5000
 A = np.random.rand(n, n)
 B = np.random.rand(n, n)
 
@@ -14,7 +14,7 @@ B = np.random.rand(n, n)
 start_time = time.time()
 det_A = np.linalg.det(A)
 det_time = time.time() - start_time
-print(f"矩阵行列式时间: {det_time:.2f} 秒")
+print(f"矩阵行列式时间: {det_time:.3f} 秒")
 
 # 矩阵乘法
 start_time = time.time()
