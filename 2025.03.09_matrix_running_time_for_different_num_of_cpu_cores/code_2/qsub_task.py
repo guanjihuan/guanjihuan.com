@@ -1,7 +1,7 @@
 import numpy as np
 import os
 
-cpu_num_array = np.arange(1, 65)
+cpu_num_array = np.arange(1, 33)
 
 current_directory = os.getcwd()
 

@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pickle
 
-cpu_num_array = np.arange(1, 65)
+cpu_num_array = np.arange(1, 33)
 
 n = 1000
 

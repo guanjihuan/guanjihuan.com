@@ -2,7 +2,7 @@ import guan  # https://py.guanjihuan.com | install: pip install --upgrade guan
 import numpy as np
 import os
 
-cpu_num_array = np.arange(1, 65)
+cpu_num_array = np.arange(1, 33)
 
 py_filename='matrix_running_time_for_different_num_of_cpu_cores_writing_into_files'
 current_directory = os.getcwd()
