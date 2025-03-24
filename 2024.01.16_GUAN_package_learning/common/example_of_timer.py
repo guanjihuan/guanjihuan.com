@@ -5,11 +5,11 @@ import guan
 def test1(a, b):
     import time
     print(a)
-    time.sleep(2)
+    time.sleep(1)
     print(b)
     print('Run finished.')
 
-for _ in range(3):
+for _ in range(2):
     test1(10, b=20)
 
 print()
@@ -17,9 +17,9 @@ print()
 def test2(a, b):
     import time
     print(a)
-    time.sleep(2)
+    time.sleep(1)
     print(b)
     print('Run finished.')
 
-for _ in range(3):
-    guan.timer(test2, 10, b=20)
+for _ in range(2):
+    guan.timer(test2, 100, b=200)
