@@ -26,13 +26,13 @@ for n in n_array:
     if size<1024:
         print(f'数据内存占用: {size0:.2f} B')
         print(f'总的内存占用: {size:.2f} B')
-    elif 1024<size<1024*1024:
+    elif 1024<=size<1024*1024:
         print(f'数据内存占用: {size0/1024:.2f} KB')
         print(f'总的内存占用: {size/1024:.2f} KB')
-    elif 1024*1024<size<1024*1024*1024:
+    elif 1024*1024<=size<1024*1024*1024:
         print(f'数据内存占用: {size0/(1024*1024):.2f} MB')
         print(f'总的内存占用: {size/(1024*1024):.2f} MB')
-    elif 1024*1024*1024<size<1024*1024*1024*1024:
+    elif 1024*1024*1024<=size<1024*1024*1024*1024:
         print(f'数据内存占用: {size0/(1024*1024*1024):.2f} GB')
         print(f'总的内存占用: {size/(1024*1024*1024):.2f} GB')
     else:
