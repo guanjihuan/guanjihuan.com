@@ -1,7 +1,7 @@
 import guan  # https://py.guanjihuan.com | install: pip install --upgrade guan
 import numpy as np
 
-cpu_num_array = np.arange(1, 17)
+cpu_num_array = np.arange(1, 9)
 
 sh_filename = 'task'
 task_name = 'test'

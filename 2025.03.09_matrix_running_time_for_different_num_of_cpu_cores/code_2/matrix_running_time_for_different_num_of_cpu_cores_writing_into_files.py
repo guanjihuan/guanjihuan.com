@@ -8,15 +8,13 @@ import time
 import pickle
 
 n = 1000
-
-A = np.random.rand(n, n)
-B = np.random.rand(n, n)
-
 test_times = 20
 
 # 矩阵乘法
 start_time = time.time()
 for _ in range(test_times):
+    A = np.random.rand(n, n)
+    B = np.random.rand(n, n)
     C = np.dot(A, B)
 multiply_time = (time.time() - start_time)/test_times
 with open(f'multiply_time_n={n}.pkl', 'wb') as f:
@@ -25,6 +23,7 @@ with open(f'multiply_time_n={n}.pkl', 'wb') as f:
 # 矩阵求逆
 start_time = time.time()
 for _ in range(test_times):
+    A = np.random.rand(n, n)
     inv_A = np.linalg.inv(A)
 inv_time = (time.time() - start_time)/test_times
 with open(f'inv_time_n={n}.pkl', 'wb') as f:
@@ -33,6 +32,7 @@ with open(f'inv_time_n={n}.pkl', 'wb') as f:
 # 矩阵的特征值和特征向量
 start_time = time.time()
 for _ in range(test_times):
+    A = np.random.rand(n, n)
     eigenvalues_A, eigenvector_A = np.linalg.eig(A)
 eigen_time = (time.time() - start_time)/test_times
 with open(f'eigen_time_n={n}.pkl', 'wb') as f:
