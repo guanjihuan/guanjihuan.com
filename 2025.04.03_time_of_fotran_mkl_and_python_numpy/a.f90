@@ -40,9 +40,11 @@ program main
     implicit none
 
     integer, allocatable :: index1(:)
-    integer n, i, j, info, ierr, stage, start, end_val, step, count_start, count_end, count_rate
+    integer n, i, j, info, ierr, stage, start, end_val, step, count_start, count_end, count_rate, test_0, test_times
     double precision, allocatable :: A(:,:)
     double precision time_used
+
+    test_times = 20
 
     ! 定义不同阶段的参数
     do stage = 1, 3
@@ -55,9 +57,9 @@ program main
             start = 2000
             end_val = 10000
             step = 1000
-        case(3)  ! 第三阶段：20000-50000，步长10000
+        case(3)  ! 第三阶段：20000-30000，步长10000
             start = 20000
-            end_val = 50000
+            end_val = 30000
             step = 10000
         end select
 
@@ -65,21 +67,25 @@ program main
         do while (n <= end_val)
 
             allocate(index1(n), stat=ierr)
-            call generate_random_matrix(n, A)
-
+            
             call system_clock(count_start, count_rate)
-            call getrf(A, index1, info);  call getri(A, index1, info)  ! 使用 getrf 和 getri 对矩阵求逆。这时候 A 不再是原来的矩阵了，而是求逆后的矩阵。
+            test_0 = 1
+            do while (test_0 <= test_times)
+                call generate_random_matrix(n, A)
+                call getrf(A, index1, info);  call getri(A, index1, info)  ! 使用 getrf 和 getri 对矩阵求逆。这时候 A 不再是原来的矩阵了，而是求逆后的矩阵。
+                deallocate(A, stat=ierr)
+                test_0 = test_0 + 1
+            end do
             call system_clock(count_end)
 
             ! 打印计算时间
             if (count_rate > 0) then
-                time_used = real(count_end - count_start) / real(count_rate)
+                time_used = real(count_end - count_start) / real(count_rate) / test_times
                 write(*, '(a, I6, a, f12.6, a)') 'n = ', n, ' 的计算时间: ', time_used, ' 秒'
             else
                 write(*,*) "无法获取计算时间"
             endif
 
-            deallocate(A, stat=ierr)
             deallocate(index1, stat=ierr)
 
             n = n + step
