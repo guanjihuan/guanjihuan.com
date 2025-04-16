@@ -1,3 +1,5 @@
+alias l="ls"
+
 alias q="qstat"
 
 alias qn="qstat -n"
