@@ -10,9 +10,9 @@ print(title)
 print(stock_data[0])
 num = 30
 date_array = stock_data[0:num, 0]
-opening_array = stock_data[0:num, 1]
-closing_array = stock_data[0:num, 2]
-high_array = stock_data[0:num, 3]
-low_array = stock_data[0:num, 4]
+opening_array = stock_data[0:num, 2]
+closing_array = stock_data[0:num, 3]
+high_array = stock_data[0:num, 4]
+low_array = stock_data[0:num, 5]
 guan.plot(date_array, closing_array, style='o-', xlabel='date', ylabel='price')
 guan.plot_stock_line(date_array, opening_array, closing_array, high_array, low_array)
