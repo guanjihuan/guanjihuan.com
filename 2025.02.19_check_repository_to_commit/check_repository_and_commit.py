@@ -1,7 +1,7 @@
 import guan
 
 # 在某个目录中寻找所有 Git 项目
-git_repository_array = guan.find_git_repositories('D:/')
+git_repository_array = guan.find_git_repositories('D:/data')
 guan.print_array(git_repository_array)
 print('\n---\n')
 
