@@ -9,9 +9,7 @@ setup(
             ['example.cpp'],
             include_dirs=[pybind11.get_include()],
             language='c++',
-            extra_link_args=[
-                '-static-libstdc++',
-            ],
+            extra_link_args=['-static-libstdc++'],
         ),
     ],
 )
