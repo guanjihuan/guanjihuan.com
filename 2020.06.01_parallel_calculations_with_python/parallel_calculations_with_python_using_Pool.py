@@ -12,10 +12,12 @@ def run_proc(name):
     time.sleep(2)
     end_time = time.perf_counter()
     print ('Process id running on %s = %s' % (name, os.getpid()), '; running time = %s' % (end_time-start_time))
+    return name
 
 if __name__ == '__main__':
     start_time = time.time()
     with multiprocessing.Pool() as pool:
-        results = pool.map(run_proc, range(64))
+        results = pool.map(run_proc, [f"task {i}" for i in range(64)])
     end_time = time.time()
+    print(results)
     print(end_time - start_time)
