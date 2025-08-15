@@ -15,9 +15,9 @@ def run_proc(name):
     return name
 
 if __name__ == '__main__':
-    start_time = time.time()
+    start_time = time.perf_counter()
     with multiprocessing.Pool() as pool:
         results = pool.map(run_proc, [f"task {i}" for i in range(64)])
-    end_time = time.time()
+    end_time = time.perf_counter()
     print(results)
     print(end_time - start_time)
