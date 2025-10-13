@@ -1,4 +1,5 @@
-#define EIGEN_USE_BLAS  // 注释或取消注释来测试
+#define EIGEN_USE_BLAS  // 注释或取消注释来测试 
+// #define EIGEN_USE_MKL_ALL  // 如果使用 MKL，优先用 EIGEN_USE_MKL_ALL
 #include <iostream>
 #include <chrono>
 #include <vector>
