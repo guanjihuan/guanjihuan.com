@@ -5,10 +5,6 @@ The newest version of this code is on the web page: https://www.guanjihuan.com/a
 
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
-import dotenv
-
-# 加载环境变量（包含API密钥）
-dotenv.load_dotenv()
 
 # 创建聊天模型 - 修改为调用 Ollama
 llm = ChatOpenAI(
