@@ -6,16 +6,15 @@ The newest version of this code is on the web page: https://www.guanjihuan.com/a
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 import dotenv
-import os
 
 # 加载环境变量（包含API密钥）
 dotenv.load_dotenv()
 
-# 创建聊天模型
+# 创建聊天模型 - 修改为调用 Ollama
 llm = ChatOpenAI(
-    api_key=os.getenv("OPENAI_API_KEY"),  # 从环境变量获取 API 密钥
-    base_url=os.getenv("DASHSCOPE_BASE_URL"),  # 指定 API 端点
-    model="qwen-plus",  # 使用通义千问 Plus 模型
+    api_key="ollama",  # 对于 Ollama，API key 可以设为任意值或 "ollama"
+    base_url="http://localhost:11434/v1",  # Ollama 的本地 API 地址
+    model="qwen2.5:3b",  # 替换为你本地安装的模型名称，如 qwen2.5 等
     temperature=0.7,  # 控制回复的随机性（0-1，越高越有创意）
     streaming=True,  # 启用流式模式
 )
