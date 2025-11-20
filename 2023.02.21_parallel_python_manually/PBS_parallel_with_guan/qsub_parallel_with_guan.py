@@ -8,4 +8,4 @@ py_filename = 'a'
 
 guan.make_sh_file_for_qsub(sh_filename=sh_filename, command_line=f'python {py_filename}.py', cpu_num=1, task_name=task_name, cd_dir=0)
 
-guan.copy_py_sh_file_and_qsub_task(parameter_array=parameter_array, py_filename=py_filename, old_str_in_py='parameter = 0 ', new_str_in_py='parameter = ', sh_filename=sh_filename, task_name=task_name)
+guan.copy_py_sh_file_and_qsub_task(parameter_array=parameter_array, py_filename=py_filename, old_str_in_py='parameter = 0', new_str_in_py='parameter = ', sh_filename=sh_filename, task_name=task_name)
