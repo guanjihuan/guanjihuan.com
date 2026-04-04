@@ -1,3 +1,8 @@
+"""
+This code is supported by the website: https://www.guanjihuan.com
+The newest version of this code is on the web page: https://www.guanjihuan.com/archives/48813
+"""
+
 import json
 import os
 from datetime import datetime
@@ -10,7 +15,7 @@ client = OpenAI(
     api_key=os.getenv("OPENAI_API_KEY"),
     base_url=os.getenv("DASHSCOPE_BASE_URL"),
 )
-MODEL = "ark-code-latest"
+MODEL = "xxx"
 
 # --- 2. 工具定义 ---
 def get_current_time():
