@@ -132,9 +132,10 @@ function ConvertTo-ReadableJson {
 }
 
 function Read-Log {
-    if (-not (Test-Path -LiteralPath $LogFile)) { return @() }
+    param([string]$Path = $LogFile)
+    if (-not (Test-Path -LiteralPath $Path)) { return @() }
     try {
-        $raw = [System.IO.File]::ReadAllText($LogFile, $Utf8NoBom)
+        $raw = [System.IO.File]::ReadAllText($Path, $Utf8NoBom)
         if ([string]::IsNullOrWhiteSpace($raw)) { return @() }
         $data = $raw | ConvertFrom-Json -ErrorAction Stop
         if ($null -eq $data) { return @() }
@@ -145,8 +146,12 @@ function Read-Log {
     }
 }
 
-function Write-Log([array]$Sessions) {
-    $tmp = "$LogFile.tmp.$PID"
+function Write-Log {
+    param(
+        [Parameter(Mandatory)][array]$Sessions,
+        [string]$Path = $LogFile
+    )
+    $tmp = "$Path.tmp.$PID"
     try {
         $items = @($Sessions)
         if ($items.Count -eq 0) {
@@ -157,7 +162,7 @@ function Write-Log([array]$Sessions) {
         }
         [System.IO.File]::WriteAllText($tmp, $json, $Utf8NoBom)
         $null = ([System.IO.File]::ReadAllText($tmp, $Utf8NoBom) | ConvertFrom-Json -ErrorAction Stop)
-        Move-Item -LiteralPath $tmp -Destination $LogFile -Force
+        Move-Item -LiteralPath $tmp -Destination $Path -Force
         return $true
     } catch {
         Write-Err "log_write_failed: $_" 'write'
@@ -198,6 +203,31 @@ function Stop-Prompt($Prompt, [string]$Now) {
     $Prompt.end_time = $Now
     $Prompt.duration = Get-DurationHms -Start ([string]$Prompt.start_time) -End $Now
     return $true
+}
+
+function Invoke-YesterdayCleanup {
+    # Marks any in-progress prompts in yesterday's log as stopped with
+    # end_time = yesterday 23:59:59. Idempotent: re-running on an already
+    # cleaned-up file is a no-op (Stop-Prompt returns false on done prompts).
+    $yesterday = (Get-Date).AddDays(-1).ToString('yyyy-MM-dd')
+    $yesterdayFile = Join-Path $LogDir "$yesterday.json"
+    if (-not (Test-Path -LiteralPath $yesterdayFile)) { return }
+    try {
+        $ySessions = @(Read-Log -Path $yesterdayFile)
+        Convert-PromptLists -Sessions $ySessions
+        $yEnd = "$yesterday 23:59:59"
+        $cleanupChanged = $false
+        foreach ($s in $ySessions) {
+            foreach ($p in @($s.prompts)) {
+                if (Stop-Prompt $p $yEnd) { $cleanupChanged = $true }
+            }
+        }
+        if ($cleanupChanged) {
+            [void](Write-Log -Sessions $ySessions -Path $yesterdayFile)
+        }
+    } catch {
+        Write-Err "yesterday_cleanup_failed: $_" 'cleanup'
+    }
 }
 
 $script:_modelCachePath = $null
@@ -363,6 +393,14 @@ try {
 
     $currentSession = Find-Session -Sessions @($sessions) -Sid $sid
     if (-not $currentSession -and $EventType -eq 'UserPromptSubmit') {
+        # Lazy day-rollover cleanup: only when we're about to create today's
+        # log file (first UserPromptSubmit of the day, new session).
+        $today = (Get-Date -Format 'yyyy-MM-dd')
+        $todayFile = Join-Path $LogDir "$today.json"
+        if (-not (Test-Path -LiteralPath $todayFile)) {
+            Invoke-YesterdayCleanup
+        }
+
         $project = if ($Payload) { [string](Get-PropertyValue $Payload 'cwd') } else { $null }
         $currentSession = [pscustomobject][ordered]@{
             project = $project
